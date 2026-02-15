@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Header from "../../components/Header";
 import { portfolio } from "../data/portfolio";
+import { ProjectItem } from "../../components/ProjectItem";
+import { PageArea } from "../../components/PageArea";
+import { CareerItem } from "../../components/CareerItem";
 
 export default function Home() {
   return (
@@ -51,30 +54,45 @@ export default function Home() {
             Work Experience
           </a>
         </div>
-        
-        <div id="work-experience" className="mt-24 w-full flex flex-col items-start gap-8 text-left">
-          <h2 className="text-3xl font-bold tracking-tight text-black dark:text-zinc-50">Career</h2>
-          <div className="w-full space-y-8 border-l-2 border-zinc-200 dark:border-zinc-800 ml-3">
-            {portfolio.jobs.map((job, index) => (
-              <div key={index} className="relative pl-8">
-                <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-4 border-white bg-zinc-200 dark:border-black dark:bg-zinc-800" />
-                <div className="flex flex-col gap-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                      <h3 className="text-xl font-semibold text-black dark:text-zinc-50">{job.title}</h3>
-                      <span className="text-sm text-zinc-500 dark:text-zinc-400">{job.startDate} - {job.endDate}</span>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                      <span className="text-base font-medium text-zinc-700 dark:text-zinc-300">{job.company}</span>
-                      <span className="text-sm text-zinc-500 dark:text-zinc-400">{job.location}</span>
-                  </div>
-                  <p className="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-400">
-                      {job.description}
-                  </p>
-                </div>
+
+        <PageArea id="projects" title="Projects">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {portfolio.projects.slice(0, 3).map((project) => (
+              <div className="w-xs">
+                <ProjectItem key={project.title} project={project} />
               </div>
             ))}
+            <div key="more" className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+              <div className="flex flex-1 flex-col items-center justify-center p-6 text-center">
+                <div className="flex flex-col gap-2">
+                  {portfolio.projects.slice(0, 3).map((project) => (
+                    <span
+                      key={project.title}
+                      className="text-sm font-medium text-zinc-500 dark:text-zinc-400"
+                    >
+                      {project.title}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="mt-4 text-xl font-semibold text-black dark:text-white">
+                  <a href="/projects" className="flex items-center gap-2">
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    <span className="transition-transform duration-300 group-hover:rotate-90">+</span>
+                    See More
+                  </a>
+                </h3>
+              </div>
+            </div>
           </div>
-        </div>
+        </PageArea>
+        
+        <PageArea id="work-experience" title="Career">
+          <div className="w-full space-y-8 border-l-2 border-zinc-200 dark:border-zinc-800 ml-3">
+            {portfolio.jobs.map((job, index) => (
+              <CareerItem key={job.title} job={job} index={index} />
+            ))}
+          </div>
+        </PageArea>
 
       </main>
     </div>

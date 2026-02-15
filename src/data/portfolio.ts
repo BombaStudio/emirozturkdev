@@ -12,7 +12,7 @@ enum ProjectTag {
   DEMO = "demo",
 }
 
-interface Project {
+export interface Project {
     title: string;
     description: string;
     techStack: string[];
@@ -39,7 +39,7 @@ interface Navigation {
     name: string;
     href: string;
 }
-interface Job {
+export interface Job {
     title: string;
     company: string;
     location: string;
@@ -48,7 +48,7 @@ interface Job {
     description: string;
 }
 
-interface Portfolio {
+export interface Portfolio {
     personal: Personal;
     navigation: Navigation[];
     projects: Project[];
