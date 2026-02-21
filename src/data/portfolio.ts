@@ -1,4 +1,4 @@
-enum ProjectType {
+export enum ProjectType {
     WEB = "web",
     MOBILE = "mobile",
     GAME = "game",
