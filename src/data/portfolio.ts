@@ -1,58 +1,66 @@
 export enum ProjectType {
-    WEB = "web",
-    MOBILE = "mobile",
-    GAME = "game",
-    AI = "ai",
-    OTHER = "other",
+  WEB = "web",
+  MOBILE = "mobile",
+  GAME = "game",
+  AI = "ai",
+  OTHER = "other",
 }
 
-enum ProjectTag {
+export enum ProjectTag {
   PROJECT = "project",
   JOB = "job",
   DEMO = "demo",
 }
 
 export interface Project {
-    title: string;
-    description: string;
-    techStack: string[];
-    link: string;
-    image: string;
-    type: ProjectType;
-    tag: ProjectTag;
+  title: string;
+  description: string;
+  techStack: string[];
+  link: string;
+  image: string;
+  type: ProjectType;
+  tag: ProjectTag;
 }
 
 interface Personal {
-    name: string;
-    role: string;
-    intro: string;
-    avatar: string;
-    contact: {
-        email: string;
-        github: string;
-        linkedin: string;
-        twitter: string;
-    };
+  name: string;
+  role: string;
+  intro: string;
+  avatar: string;
+  contact: {
+    email: string;
+    github: string;
+    linkedin: string;
+    twitter: string;
+  };
+}
+
+export interface PortfolioLink {
+  platform: string;
+  url: string;
+  description: string;
+  icon: string; // SVG path data or icon identifier
 }
 
 interface Navigation {
-    name: string;
-    href: string;
+  name: string;
+  href: string;
 }
 export interface Job {
-    title: string;
-    company: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-    description: string;
+  title: string;
+  company: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  description: string;
 }
 
 export interface Portfolio {
-    personal: Personal;
-    navigation: Navigation[];
-    projects: Project[];
-    jobs: Job[];
+  personal: Personal;
+  navigation: Navigation[];
+  projects: Project[];
+  jobs: Job[];
+  portfolioLinks: PortfolioLink[];
 }
 
 
@@ -130,6 +138,40 @@ const projects: Project[] = [
   },
 ];
 
+const portfolioLinks: PortfolioLink[] = [
+  {
+    platform: "GitHub",
+    url: "https://github.com/bombastudio",
+    description: "Source code & contributions",
+    icon: "github",
+  },
+  {
+    platform: "Google Play Store",
+    url: "https://play.google.com/store/apps/dev?id=9083417276421261563",
+    description: "All of my mobile projects",
+    icon: "googleplay",
+  },
+  {
+    platform: "itch.io",
+    url: "https://giantprogrammer.itch.io",
+    description: "Indie game projects",
+    icon: "itchio",
+  },
+  {
+    platform: "GameMonetize",
+    url: "https://gamemonetize.com/games?company=EmirOzturk",
+    description: "Web-based game distribution",
+    icon: "gamemonetize",
+  },
+  {
+    platform: "GDevelop",
+    url: "https://gd.games/giantprogrammer",
+    description: "Open-source game engine projects",
+    icon: "gdevelop",
+  }
+
+];
+
 
 const navs: Navigation[] = [
   { name: "Home", href: "/" },
@@ -154,6 +196,7 @@ export const portfolio: Portfolio = {
   navigation: navs,
   projects: projects,
   jobs: jobs,
+  portfolioLinks: portfolioLinks,
 };
 
 

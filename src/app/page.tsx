@@ -4,6 +4,7 @@ import { portfolio } from "../data/portfolio";
 import { ProjectItem } from "../../components/ProjectItem";
 import { PageArea } from "../../components/PageArea";
 import { CareerItem } from "../../components/CareerItem";
+import { PortfolioLinks } from "../../components/PortfolioLinks";
 
 export default function Home() {
   return (
@@ -57,6 +58,10 @@ export default function Home() {
           </div>
           
         </div>
+
+        <PageArea id="portfolio-links" title="Find Me On">
+          <PortfolioLinks links={portfolio.portfolioLinks} />
+        </PageArea>
 
         <PageArea id="projects" title="Projects">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
