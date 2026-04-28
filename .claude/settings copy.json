@@ -1,0 +1,9 @@
+{
+    "env":{
+        "ANTHROPIC_BASE_URL":"http://127.0.0.1:11434",
+        "ANTHROPIC_AUTH_TOKEN":"ollama",
+        "ANTHROPIC_API_KEY":"",
+        "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+        "ANTHROPIC_MODEL":"qwen3.5:latest"
+    }
+}
