@@ -1,44 +1,76 @@
-import Header from "../../../components/Header";
+"use client";
+
 import { portfolio } from "../../data/portfolio";
+import { MoveRight } from "lucide-react";
 
 export default function Contact() {
   return (
-    <>
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold tracking-tight text-black dark:text-zinc-50 mb-8">Contact</h1>
-        <div className="max-w-2xl">
-          <br/>
-          
-          <div className="space-y-4">
-              <div>
-                  <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Email</h3>
-                   <a href={`mailto:${portfolio.personal.contact.email}`} className="text-teal-600 dark:text-teal-400 hover:underline">
-                      {portfolio.personal.contact.email}
-                   </a>
-              </div>
+    <main className="min-h-screen bg-black pt-48 px-6 md:px-24 flex flex-col items-center">
+      <div className="max-w-4xl w-full">
+        <header className="mb-24 text-center md:text-left">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">
+            COMM_UPLINK
+          </h1>
+          <p className="text-zinc-500 uppercase font-bold tracking-[0.3em] text-[10px]">
+            STATUS: READY_FOR_INPUT {"//"} ENCRYPTED_CHANNEL
+          </p>
+        </header>
 
-              <div>
-                  <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Socials</h3>
-                  <div className="flex flex-col gap-2 mt-2">
-                       {Object.entries(portfolio.personal.contact).map(([platform, url]) => {
-                           if (platform === 'email') return null;
-                            return (
-                                <a
-                                    key={platform}
-                                    href={url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 capitalize"
-                                >
-                                    {platform}
-                                </a>
-                            )
-                       })}
-                  </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
+          <div className="flex flex-col gap-12">
+            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-600 uppercase">DIRECT_CHANNELS</h2>
+            <div className="flex flex-col gap-8">
+               <a 
+                href={`mailto:${portfolio.personal.contact.email}`} 
+                className="group flex flex-col items-start gap-2"
+               >
+                 <span className="text-zinc-700 font-mono text-[9px]">01 {"//"} EMAIL</span>
+                 <span className="text-2xl font-bold uppercase group-hover:text-zinc-400 transition-colors flex items-center gap-4">
+                   SEND_DATA <MoveRight size={20} />
+                 </span>
+               </a>
+
+               <div className="flex flex-col gap-4">
+                 <span className="text-zinc-700 font-mono text-[9px]">02 {"//"} LOCATION</span>
+                 <span className="text-lg font-bold uppercase text-zinc-300">
+                   Bornova, İzmir, TR {"//"} REMOTE_ENABLED
+                 </span>
+               </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-12">
+            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-600 uppercase">SOCIAL_NODES</h2>
+            <div className="grid grid-cols-2 gap-8">
+              {Object.entries(portfolio.personal.contact).map(([platform, url]) => {
+                if (platform === "email") return null;
+                return (
+                  <a 
+                    key={platform} 
+                    href={url as string} 
+                    target="_blank"
+                    className="flex flex-col group"
+                  >
+                    <span className="text-zinc-700 font-mono text-[9px] uppercase">{platform}</span>
+                    <span className="text-base font-bold uppercase group-hover:text-white transition-colors">
+                      LINK_UPLINK
+                    </span>
+                  </a>
+                )
+              })}
+            </div>
           </div>
         </div>
-      </main>
-    </>
+
+        <div className="mt-32 p-8 border border-zinc-900 bg-zinc-950 font-mono text-xs text-zinc-600 leading-relaxed uppercase tracking-tighter">
+          <p>
+            {"// CAUTION: SYSTEM ARCHITECTURE IS RAW."} <br />
+            {"// ALL COMMUNICATION IS HANDLED WITH LOW-LEVEL PRIORITY."} <br />
+            {"// IF CRYING DOESN&apos;T EASE THE PAIN, THEN WE&apos;LL HAVE TO WORK."} <br />
+            {"// INITIATE CONTACT IF YOU HAVE COMPLEX PROBLEMS."}
+          </p>
+        </div>
+      </div>
+    </main>
   );
 }

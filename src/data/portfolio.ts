@@ -1,15 +1,19 @@
 export enum ProjectType {
   WEB = "web",
+  WEB2 = "web2",
+  WEB3 = "web3",
   MOBILE = "mobile",
   GAME = "game",
   AI = "ai",
   OTHER = "other",
+  SYSTEM = "system",
 }
 
 export enum ProjectTag {
   PROJECT = "project",
   JOB = "job",
   DEMO = "demo",
+  HACKATHON = "hackathon",
 }
 
 export interface Project {
@@ -26,12 +30,15 @@ interface Personal {
   name: string;
   role: string;
   intro: string;
+  about: string;
   avatar: string;
   contact: {
     email: string;
     github: string;
     linkedin: string;
     twitter: string;
+    youtube?: string;
+    reddit?: string;
   };
 }
 
@@ -39,13 +46,14 @@ export interface PortfolioLink {
   platform: string;
   url: string;
   description: string;
-  icon: string; // SVG path data or icon identifier
+  icon: string;
 }
 
 interface Navigation {
   name: string;
   href: string;
 }
+
 export interface Job {
   title: string;
   company: string;
@@ -63,8 +71,6 @@ export interface Portfolio {
   portfolioLinks: PortfolioLink[];
 }
 
-
-
 const jobs: Job[] = [
   {
     title: "Game Developer",
@@ -72,56 +78,74 @@ const jobs: Job[] = [
     location: "Bornova, İzmir, Turkey",
     startDate: "Oct 2024",
     endDate: "Present",
-    description: "Working on multiplayer games and gaming industry projects using Unity.",
+    description: "Architecting multiplayer systems and high-performance game logic for industry-scale projects.",
   },
   {
     title: "Full Stack Developer",
-    company: "EDUJİ R&D SOFTWARE DESIGN AND CONSULTANCY INC.",
+    company: "EDUJİ R&D SOFTWARE",
     location: "Bornova, İzmir, Turkey",
     startDate: "Nov 2025",
-    endDate: "current",
-    description: "Developed web applications using JavaScript, MySQL, Laravel, Tailwind CSS, PHP, and React.js.",
+    endDate: "Current",
+    description: "Building robust enterprise web solutions with Laravel, React, and MySQL, focusing on scalable architecture.",
   },
   {
     title: "Full Stack Developer Intern",
-    company: "EDUJİ R&D SOFTWARE DESIGN AND CONSULTANCY INC.",
+    company: "EDUJİ R&D SOFTWARE",
     location: "Bornova, İzmir, Turkey",
     startDate: "Aug 2025",
     endDate: "Aug 2025",
-    description: "Internship focused on web development with Tailwind CSS, Laravel, and PHP.",
+    description: "Engineered web features using the TALL stack and optimized database queries.",
   },
   {
     title: "Game Developer Intern",
-    company: "Icarus Interactive Entertainment",
-    location: "İzmir, Turkey (Remote)",
+    company: "Icarus Interactive",
+    location: "İzmir, Turkey",
     startDate: "May 2024",
     endDate: "May 2024",
-    description: "Gained experience in game development, design, and industry practices using Unreal Engine and Unity.",
+    description: "Deep-dived into engine internals and game design patterns using Unreal Engine and Unity.",
   },
   {
-    title: "Augmented Reality Software Developer",
+    title: "AR Software Developer",
     company: "TR Animals AR Map",
     location: "İzmir, Turkey",
     startDate: "Aug 2023",
     endDate: "Apr 2024",
-    description: "Developed AR applications using Godot and Unity for Teknofest.",
+    description: "Developed augmented reality mapping solutions for Teknofest using Godot and Unity.",
   },
 ];
 
 const projects: Project[] = [
   {
-    title: "Saadet Müge Öztürk",
-    description: "A portfolio website for Saadet Müge Öztürk",
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript"],
-    link: "https://saadetmuge.vercel.app/",
-    image: "/saadetmuge.png",
-    type: ProjectType.WEB,
+    title: "Talu Engine",
+    description: "A custom high-performance game engine built from scratch. Focuses on low-level memory management and custom shader pipelines.",
+    techStack: ["Wolflang", "C++", "OpenGL", "System Design"],
+    link: "https://github.com/bombastudio/talu-engine",
+    image: "/talu.png",
+    type: ProjectType.SYSTEM,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "Airsence",
+    description: "Complex vehicle reservation and management system with real-time tracking and automated billing.",
+    techStack: ["Laravel", "Vue.js", "MySQL", "Redis"],
+    link: "https://github.com/bombastudio/airsence",
+    image: "/airsence.png",
+    type: ProjectType.WEB2,
     tag: ProjectTag.JOB,
   },
   {
+    title: "Monadistan",
+    description: "Decentralized Web3 game store and distribution platform built for high-stakes hackathon competition.",
+    techStack: ["Next.js", "Solidity", "Web3.js", "EVM"],
+    link: "https://github.com/bombastudio/monadistan",
+    image: "/monadistan.png",
+    type: ProjectType.WEB3,
+    tag: ProjectTag.HACKATHON,
+  },
+  {
     title: "MeowStick: Tarot & AI",
-    description: "AI Based Tarot Card Reading Application",
-    techStack: ["Flutter", "Deno", "PostgreSQL", "Supabase"],
+    description: "AI-powered occult analysis and tarot reading mobile application with custom trained LLM integration.",
+    techStack: ["Flutter", "Deno", "Supabase", "AI/ML"],
     link: "https://play.google.com/store/apps/details?id=com.emirozturk.meowstick",
     image: "/meowstick.png",
     type: ProjectType.MOBILE,
@@ -129,11 +153,74 @@ const projects: Project[] = [
   },
   {
     title: "Ethuzzle",
-    description: "Buying a part of the image and you can see the all buyed parts like a puzzle",
-    techStack: ["React", "Solidity", "Firebase"],
-    link: "#",
+    description: "A decentralized puzzle platform implemented on the Ethereum blockchain, focusing on on-chain logic.",
+    techStack: ["Solidity", "Web3.js", "Ethers.js", "React"],
+    link: "https://github.com/BombaStudio/ethuzzle",
     image: "/ethuzzle.png",
-    type: ProjectType.WEB,
+    type: ProjectType.WEB3,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "Bloody Cherry",
+    description: "A fast-paced roguelike survival shooter where players collect cherries while battling waves of enemies.",
+    techStack: ["GDevelop", "JavaScript", "Game Design"],
+    link: "https://gd.games/giantprogrammer/sutlu-shooter",
+    image: "/bloody-cherry.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "Pike",
+    description: "A challenging action-adventure game with solid core mechanics, developed during a game jam.",
+    techStack: ["Unity", "C#", "Game Jam"],
+    link: "https://giantprogrammer.itch.io/pike",
+    image: "/pike.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.DEMO,
+  },
+  {
+    title: "Labyrinth Home",
+    description: "A unique puzzle game where the player is trapped in a labyrinth made entirely of glass.",
+    techStack: ["GDevelop", "HTML5", "Puzzle"],
+    link: "https://giantprogrammer.itch.io/labyrinth-home",
+    image: "/labyrinth-home.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "After Be Impostor",
+    description: "A survival game featuring a small impostor ejected from a spaceship, trying to survive a meteor shower.",
+    techStack: ["GDevelop", "JavaScript", "Fan Art"],
+    link: "https://giantprogrammer.itch.io/after-be-impostor",
+    image: "/after-be-impostor.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.DEMO,
+  },
+  {
+    title: "Last Mission for Santa",
+    description: "A holiday-themed adventure game featuring custom mechanics and festive level design.",
+    techStack: ["Godot", "GDScript", "Action"],
+    link: "https://github.com/BombaStudio/last-mission-for-santa",
+    image: "/santa.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "Tample Suit Runner",
+    description: "An endless runner adventure game with leaderboard integration and platforming elements.",
+    techStack: ["GDevelop", "JavaScript", "Mobile Ready"],
+    link: "https://gd.games/giantprogrammer/tample-suit-runner",
+    image: "/runner.png",
+    type: ProjectType.GAME,
+    tag: ProjectTag.PROJECT,
+  },
+  {
+    title: "FChan",
+    description: "A specialized system-level utility for high-performance communication and data handling.",
+    techStack: ["C++", "STL", "Socket Programming"],
+    link: "https://github.com/BombaStudio/FChan",
+    image: "/fchan.png",
+    type: ProjectType.SYSTEM,
     tag: ProjectTag.PROJECT,
   },
 ];
@@ -142,55 +229,49 @@ const portfolioLinks: PortfolioLink[] = [
   {
     platform: "GitHub",
     url: "https://github.com/bombastudio",
-    description: "Source code & contributions",
+    description: "Raw source code",
     icon: "github",
   },
   {
-    platform: "Google Play Store",
-    url: "https://play.google.com/store/apps/dev?id=9083417276421261563",
-    description: "All of my mobile projects",
-    icon: "googleplay",
+    platform: "LinkedIn",
+    url: "https://linkedin.com/in/emir-ozturk-dev",
+    description: "Professional network",
+    icon: "linkedin",
+  },
+  {
+    platform: "YouTube",
+    url: "https://youtube.com/@GiantProgrammer",
+    description: "Devlogs & Engineering",
+    icon: "youtube",
   },
   {
     platform: "itch.io",
     url: "https://giantprogrammer.itch.io",
-    description: "Indie game projects",
+    description: "Indie games",
     icon: "itchio",
   },
-  {
-    platform: "GameMonetize",
-    url: "https://gamemonetize.com/games?company=EmirOzturk",
-    description: "Web-based game distribution",
-    icon: "gamemonetize",
-  },
-  {
-    platform: "GDevelop",
-    url: "https://gd.games/giantprogrammer",
-    description: "Open-source game engine projects",
-    icon: "gdevelop",
-  }
-
 ];
 
-
 const navs: Navigation[] = [
-  { name: "Home", href: "/" },
-  { name: "Projects", href: "/projects" },
-  //{ name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: "MANIFESTO", href: "/" },
+  { name: "ENGINEERING", href: "/projects" },
+  { name: "CONTACT", href: "/contact" },
 ];
 
 export const portfolio: Portfolio = {
-  personal: <Personal>{
+  personal: {
     name: "Emir Öztürk",
-    role: "Software Developer",
-    intro: "Emir Öztürk",
-    avatar: "/avatar.png", // specific avatar path can be updated later
+    role: "Physics Student & Hardcore Developer",
+    intro: "I treat coding like writing an underground rap verse—raw, impactful, and built to solve real pain.",
+    about: "I'm Emir Öztürk. Physics student by day, full-stack architect and game engine creator by night. I don't build generic solutions; I engineer systems that handle the chaos. Whether it's a custom game engine or a decentralized Web3 platform, I code with a 'raw' philosophy: no bloat, just performance and impact.",
+    avatar: "/avatar.png",
     contact: {
       email: "emirozturk788@gmail.com",
       github: "https://github.com/bombastudio",
       linkedin: "https://linkedin.com/in/emir-ozturk-dev",
       twitter: "https://twitter.com/GiantProgrammer",
+      youtube: "https://youtube.com/@GiantProgrammer",
+      reddit: "https://reddit.com/u/giantprogrammer",
     },
   },
   navigation: navs,
@@ -198,5 +279,3 @@ export const portfolio: Portfolio = {
   jobs: jobs,
   portfolioLinks: portfolioLinks,
 };
-
-

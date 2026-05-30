@@ -1,110 +1,134 @@
-import Image from "next/image";
-import Header from "../../components/Header";
+"use client";
+
 import { portfolio } from "../data/portfolio";
-import { ProjectItem } from "../../components/ProjectItem";
-import { PageArea } from "../../components/PageArea";
-import { CareerItem } from "../../components/CareerItem";
-import { PortfolioLinks } from "../../components/PortfolioLinks";
+import HeroBackground from "../../components/HeroBackground";
+import { MoveRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <>
-    <div className="flex flex-col items-center justify-between w-full">
+    <main className="relative min-h-screen selection:bg-white selection:text-black">
+      <HeroBackground />
       
-      <main className="flex flex-col items-center w-full py-16 px-8">
-        
-        <div className="flex flex-col items-start gap-8 text-left">
-          <h1 className="max-w-5xl text-4xl font-bold tracking-tight text-black dark:text-zinc-50 sm:text-6xl">
-            {portfolio.personal.intro}
+      {/* HERO SECTION */}
+      <section className="flex flex-col justify-center min-h-screen px-6 md:px-24 pt-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-7xl"
+        >
+          <h1 className="text-5xl md:text-[7rem] leading-[0.85] font-extrabold tracking-tighter mb-8 uppercase">
+            EMIR <br />
+            ÖZTÜRK
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            A software developer and physics student fueled by complex problems.
-            <br />
-            <br />
-            This industry is very painful, but i think pain is the result of crisis and crisis is the harbinger of opportunity. 
-            If crying doesn't ease the pain, then we'll have to work.
-            So i have developed many projects and demos to find the opportunity.
-            Sometimes, my ideas keep me awake at night, pushing the limits of my mind.
-            The important thing is being able to manage ideas and bring them to life with the right strategy.
-            This requires production and hard work.
-            Now i am trying to learn new things for developing projects better and trying to make batter projects.
-            For this reason i feel like a underground rapper that fighting the world.
-
-            <br/>
-            <br/>
-            Dont wait the benefits from the world, coding your pain.
-          </p>
-          <div className="flex flex-row items-center gap-8">
-            <a
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-8 text-background transition-colors hover:opacity-90 sm:w-fit"
-              href="#work-experience"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0"
-                />
-              </svg>
-              Work Experience
-            </a>
-          </div>
-          
-        </div>
-
-        <PageArea id="portfolio-links" title="Find Me On">
-          <PortfolioLinks links={portfolio.portfolioLinks} />
-        </PageArea>
-
-        <PageArea id="projects" title="Projects">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {portfolio.projects.slice(0, 3).map((project) => (
-              <div className="w-xs">
-                <ProjectItem key={project.title} project={project} />
-              </div>
-            ))}
-            <div key="more" className="group relative flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
-              <div className="flex flex-1 flex-col items-center justify-center p-6 text-center">
-                <div className="flex flex-col gap-2">
-                  {portfolio.projects.slice(0, 3).map((project) => (
-                    <span
-                      key={project.title}
-                      className="text-sm font-medium text-zinc-500 dark:text-zinc-400"
-                    >
-                      {project.title}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="mt-4 text-xl font-semibold text-black dark:text-white">
-                  <a href="/projects" className="flex items-center gap-2">
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    <span className="transition-transform duration-300 group-hover:rotate-90">+</span>
-                    See More
-                  </a>
-                </h3>
-              </div>
+          <div className="flex flex-col md:flex-row gap-12 md:items-end">
+            <p className="max-w-xl text-lg md:text-xl font-medium text-zinc-400 uppercase leading-tight">
+              {portfolio.personal.intro}
+            </p>
+            <div className="flex gap-4">
+              <a href="#projects" className="flex items-center gap-2 text-white hover:text-zinc-400 transition-colors uppercase font-bold tracking-widest text-xs">
+                Engineering <MoveRight size={14} />
+              </a>
             </div>
           </div>
-        </PageArea>
-        
-        <PageArea id="work-experience" title="Career">
-          <div className="w-full space-y-8 border-l-2 border-zinc-200 dark:border-zinc-800 ml-3">
-            {portfolio.jobs.map((job, index) => (
-              <CareerItem key={job.title} job={job} index={index} />
+        </motion.div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section className="px-6 md:px-24 py-24 border-t border-zinc-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 mb-8 uppercase">MANIFESTO</h2>
+            <p className="text-xl md:text-2xl leading-tight font-medium uppercase">
+              {portfolio.personal.about}
+            </p>
+          </motion.div>
+          <div className="flex flex-col justify-end">
+            <p className="text-zinc-500 uppercase text-[10px] tracking-widest leading-relaxed">
+              Physics Student @ Ege University <br />
+              Game Engine Creator <br />
+              Full Stack Architect <br />
+              Underground Engineering Philosophy
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS SECTION (BRUTALIST LIST) */}
+      <section id="projects" className="px-6 md:px-24 py-24 border-t border-zinc-900">
+        <div className="max-w-7xl">
+          <div className="flex justify-between items-end mb-16">
+            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 uppercase">ENGINEERING PROJECTS</h2>
+            <a href="/projects" className="text-[10px] font-bold text-zinc-400 hover:text-white transition-colors uppercase tracking-[0.2em] flex items-center gap-2">
+              VIEW_FULL_ARCHIVE <MoveRight size={10} />
+            </a>
+          </div>
+          <div className="flex flex-col divide-y divide-zinc-900">
+            {portfolio.projects.slice(0, 6).map((project, i) => (
+              <motion.div 
+                key={project.title} 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover:bg-zinc-950 transition-colors cursor-pointer"
+              >
+                <div className="flex flex-col">
+                  <span className="text-zinc-600 font-mono text-xs mb-2">0{i + 1} {"//"} {project.type}</span>
+                  <h3 className="text-3xl md:text-5xl font-bold group-hover:translate-x-4 transition-transform duration-300 uppercase">
+                    {project.title}
+                  </h3>
+                </div>
+                <div className="flex flex-col items-start md:items-end mt-4 md:mt-0 gap-2">
+                   <div className="flex gap-2 flex-wrap md:justify-end">
+                     {project.techStack.map(tech => (
+                       <span key={tech} className="text-[9px] border border-zinc-800 px-2 py-0.5 text-zinc-500 uppercase tracking-tighter">
+                         {tech}
+                       </span>
+                     ))}
+                   </div>
+                   <a href={project.link} target="_blank" className="flex items-center gap-2 text-[10px] font-bold text-zinc-400 hover:text-white transition-colors uppercase tracking-widest mt-2">
+                     Source <MoveRight size={10} />
+                   </a>
+                </div>
+              </motion.div>
             ))}
           </div>
-        </PageArea>
+        </div>
+      </section>
 
-      </main>
-    </div>
-    </>
+      {/* EXPERIENCE SECTION */}
+      <section className="px-6 md:px-24 py-24 border-t border-zinc-900">
+        <div className="max-w-7xl">
+           <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 mb-16 uppercase">OPERATIONAL HISTORY</h2>
+           <div className="grid grid-cols-1 gap-12">
+             {portfolio.jobs.map((job, i) => (
+               <motion.div 
+                key={i} 
+                initial={{ opacity: 0.2 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ margin: "-20%" }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col md:flex-row gap-8"
+               >
+                 <div className="w-48 shrink-0">
+                    <span className="text-zinc-600 font-mono text-xs">{job.startDate} &mdash; {job.endDate}</span>
+                 </div>
+                 <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2 uppercase">{job.title}</h3>
+                    <p className="text-zinc-500 text-[10px] uppercase mb-4 tracking-widest">{job.company} {"//"} {job.location}</p>
+                    <p className="max-w-2xl text-base text-zinc-300 uppercase leading-snug">{job.description}</p>
+                 </div>
+               </motion.div>
+             ))}
+           </div>
+        </div>
+      </section>
+    </main>
   );
 }
-

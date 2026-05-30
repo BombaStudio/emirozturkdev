@@ -1,100 +1,117 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { ProjectItem } from "../../../components/ProjectItem";
-import { ProjectFilter } from "../../../components/ProjectFilter";
-import { portfolio, ProjectType, ProjectTag } from "../../data/portfolio";
+import { useState } from "react";
+import { portfolio, ProjectType } from "../../data/portfolio";
+import { MoveRight } from "lucide-react";
 
 export default function Projects() {
-  const [selectedTypes, setSelectedTypes] = useState<ProjectType[]>([]);
-  const [selectedTags, setSelectedTags] = useState<ProjectTag[]>([]);
+  const [filter, setFilter] = useState<ProjectType | "ALL">("ALL");
 
-  const handleTypeChange = (type: ProjectType) => {
-    setSelectedTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
-    );
-  };
+  const filteredProjects = filter === "ALL" 
+    ? portfolio.projects 
+    : portfolio.projects.filter(p => p.type === filter);
 
-  const handleTagChange = (tag: ProjectTag) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
-
-  const handleClearAll = () => {
-    setSelectedTypes([]);
-    setSelectedTags([]);
-  };
-
-  const filteredProjects = useMemo(() => {
-    return portfolio.projects.filter((project) => {
-      const typeMatch =
-        selectedTypes.length === 0 || selectedTypes.includes(project.type);
-      const tagMatch =
-        selectedTags.length === 0 || selectedTags.includes(project.tag);
-      return typeMatch && tagMatch;
-    });
-  }, [selectedTypes, selectedTags]);
+  const categories = ["ALL", ...Object.values(ProjectType)];
 
   return (
-    <>
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold tracking-tight text-black dark:text-zinc-50 mb-2">
-          Projects
-        </h1>
-        <p className="text-base text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl">
-          A curated selection of software engineering crafts, from web
-          applications to indie games.
-        </p>
+    <main className="min-h-screen bg-black pt-32 px-6 md:px-24">
+      <div className="max-w-7xl mx-auto">
+        <header className="mb-24">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-8">
+            ENGINEERING_ARCHIVE
+          </h1>
+          <p className="max-w-2xl text-lg text-zinc-500 uppercase font-medium leading-tight">
+            A repository of hardcore systems, game engines, and decentralized experiments. Built to solve pain.
+          </p>
+        </header>
 
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Filter Sidebar */}
-          <ProjectFilter
-            selectedTypes={selectedTypes}
-            selectedTags={selectedTags}
-            onTypeChange={handleTypeChange}
-            onTagChange={handleTagChange}
-            onClearAll={handleClearAll}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          {/* PROJECTS LIST */}
+          <div className="md:col-span-9 flex flex-col divide-y divide-zinc-900 border-t border-zinc-900">
+            {filteredProjects.map((project, i) => (
+              <div 
+                key={project.title} 
+                className="group py-12 flex flex-col md:grid md:grid-cols-8 gap-8 items-start hover:bg-zinc-950 transition-colors cursor-pointer"
+              >
+                <div className="col-span-1 text-zinc-700 font-mono text-xs uppercase">
+                  ID_{i + 1}
+                </div>
+                
+                <div className="col-span-5 flex flex-col">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest bg-zinc-900 px-2 py-0.5">
+                      {project.type}
+                    </span>
+                    <span className="text-[10px] font-bold text-zinc-700 uppercase tracking-widest">
+                      {project.tag}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:translate-x-2 transition-transform">
+                    {project.title}
+                  </h2>
+                  <p className="mt-4 text-zinc-400 text-sm md:text-base max-w-xl">
+                    {project.description}
+                  </p>
+                </div>
 
-          {/* Project Grid */}
-          <div className="flex-1">
-            {filteredProjects.length > 0 ? (
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredProjects.map((project) => (
-                  <ProjectItem key={project.title} project={project} />
-                ))}
+                <div className="col-span-2 flex flex-col items-start md:items-end gap-4">
+                  <div className="flex flex-wrap gap-2 md:justify-end">
+                    {project.techStack.map(tech => (
+                      <span key={tech} className="text-[8px] border border-zinc-800 px-2 py-0.5 text-zinc-600 uppercase tracking-tighter">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4 mt-auto">
+                     <a 
+                      href={project.link} 
+                      target="_blank" 
+                      className="flex items-center gap-2 text-[10px] font-bold text-white hover:text-zinc-400 transition-colors uppercase tracking-[0.2em]"
+                    >
+                      DEPLOYMENT <MoveRight size={10} />
+                     </a>
+                  </div>
+                </div>
               </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1}
-                  stroke="currentColor"
-                  className="w-12 h-12 text-zinc-300 dark:text-zinc-700 mb-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803a7.5 7.5 0 0010.607 0z"
-                  />
-                </svg>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-                  No projects match the selected filters.
-                </p>
-                <button
-                  onClick={handleClearAll}
-                  className="mt-3 text-xs font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 underline underline-offset-2 transition-colors"
-                >
-                  Clear all filters
-                </button>
+            ))}
+            {filteredProjects.length === 0 && (
+              <div className="py-24 text-center">
+                <p className="text-zinc-500 uppercase font-mono text-xs">NO_PROJECTS_FOUND_IN_THIS_CATEGORY</p>
               </div>
             )}
           </div>
+
+          {/* FILTER SIDEBAR (RIGHT) */}
+          <div className="md:col-span-3">
+            <div className="sticky top-32">
+              <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] mb-8">FILTERS</h3>
+              <div className="flex flex-col gap-4">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat as any)}
+                    className={`text-left uppercase font-bold text-xs tracking-widest transition-all ${
+                      filter === cat 
+                        ? "text-white translate-x-2" 
+                        : "text-zinc-600 hover:text-zinc-400"
+                    }`}
+                  >
+                    {cat}
+                    {filter === cat && <span className="ml-2">_</span>}
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-24 pt-8 border-t border-zinc-900">
+                <p className="text-[10px] text-zinc-600 uppercase leading-relaxed">
+                  Filtering by engineering classification. <br />
+                  Select a category to narrow the archive.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #e5e5e5;
 }
 
 @theme inline {
@@ -12,15 +12,43 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: #000000;
+  color: #e5e5e5;
+  font-family: var(--font-geist-mono), monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Brutalist Reset */
+* {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-geist-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+}
+
+p {
+  font-family: var(--font-geist-sans), sans-serif;
+  line-height: 1.6;
+}
+
+/* Glitch Animation for text (optional but fits the vibe) */
+.glitch-text:hover {
+  animation: glitch 0.2s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
