@@ -2,8 +2,38 @@
 
 import { portfolio } from "../../data/portfolio";
 import { MoveRight } from "lucide-react";
+import { useState } from 'react';
 
 export default function Contact() {
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      setFormMessage(data.message);
+      setName('');
+      setMessage('');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormMessage('Internal Server Error');
+    }
+  };
+
   return (
     <main className="min-h-screen bg-black pt-48 px-6 md:px-24 flex flex-col items-center">
       <div className="max-w-4xl w-full">
@@ -20,22 +50,22 @@ export default function Contact() {
           <div className="flex flex-col gap-12">
             <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-600 uppercase">DIRECT_CHANNELS</h2>
             <div className="flex flex-col gap-8">
-               <a 
+              <a 
                 href={`mailto:${portfolio.personal.contact.email}`} 
                 className="group flex flex-col items-start gap-2"
-               >
-                 <span className="text-zinc-700 font-mono text-[9px]">01 {"//"} EMAIL</span>
-                 <span className="text-2xl font-bold uppercase group-hover:text-zinc-400 transition-colors flex items-center gap-4">
-                   SEND_DATA <MoveRight size={20} />
-                 </span>
-               </a>
+              >
+                <span className="text-zinc-700 font-mono text-[9px]">01 {"//"} EMAIL</span>
+                <span className="text-2xl font-bold uppercase group-hover:text-zinc-400 transition-colors flex items-center gap-4">
+                  SEND_DATA <MoveRight size={20} />
+                </span>
+              </a>
 
-               <div className="flex flex-col gap-4">
-                 <span className="text-zinc-700 font-mono text-[9px]">02 {"//"} LOCATION</span>
-                 <span className="text-lg font-bold uppercase text-zinc-300">
-                   Bornova, İzmir, TR {"//"} REMOTE_ENABLED
-                 </span>
-               </div>
+              <div className="flex flex-col gap-4">
+                <span className="text-zinc-700 font-mono text-[9px]">02 {"//"} LOCATION</span>
+                <span className="text-lg font-bold uppercase text-zinc-300">
+                  Bornova, İzmir, TR {"//"} REMOTE_ENABLED
+                </span>
+              </div>
             </div>
           </div>
 
@@ -59,6 +89,33 @@ export default function Contact() {
                 )
               })}
             </div>
+
+            <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
+              <input 
+                type="text" 
+                placeholder="Name" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="bg-zinc-900 text-white px-4 py-2 rounded"
+              />
+              <textarea 
+                placeholder="Message" 
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                className="bg-zinc-900 text-white px-4 py-2 rounded"
+              />
+              <button type="submit" className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded">
+                SUBMIT
+              </button>
+            </form>
+
+            {formMessage && (
+              <div className="mt-4 font-bold uppercase text-zinc-600">
+                {formMessage}
+              </div>
+            )}
           </div>
         </div>
 
@@ -66,7 +123,7 @@ export default function Contact() {
           <p>
             {"// CAUTION: SYSTEM ARCHITECTURE IS RAW."} <br />
             {"// ALL COMMUNICATION IS HANDLED WITH LOW-LEVEL PRIORITY."} <br />
-            {"// IF CRYING DOESN&apos;T EASE THE PAIN, THEN WE&apos;LL HAVE TO WORK."} <br />
+            {"// IF CRYING DOESN'T EASE THE PAIN, THEN WE'D HAVE TO WORK."} <br />
             {"// INITIATE CONTACT IF YOU HAVE COMPLEX PROBLEMS."}
           </p>
         </div>
