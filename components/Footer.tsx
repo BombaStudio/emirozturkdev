@@ -1,3 +1,5 @@
+"use client";
+
 import { portfolio } from "../src/data/portfolio";
 import { Github, Linkedin, Youtube, Mail, Twitter } from "lucide-react";
 import { useState } from 'react';
@@ -27,10 +29,27 @@ export default function Footer() {
         window.location.href = `mailto:${portfolio.personal.contact.email}`;
         break;
       case 'sudo rm -rf /':
-        document.body.style.backgroundColor = 'red';
-        setTimeout(() => {
-          document.body.style.backgroundColor = '';
-        }, 1000);
+        setHelpText('CRITICAL: EXECUTING DESTRUCTION_PROTOCOL_V4.0...');
+        
+        // Add a "glitch" class or styles to body
+        const originalStyle = document.body.style.cssText;
+        document.body.style.transition = 'all 0.1s steps(2)';
+        
+        let count = 0;
+        const interval = setInterval(() => {
+          const x = (Math.random() - 0.5) * 20;
+          const y = (Math.random() - 0.5) * 20;
+          const rotate = (Math.random() - 0.5) * 5;
+          document.body.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
+          document.body.style.filter = Math.random() > 0.5 ? 'invert(1) contrast(200%)' : 'hue-rotate(90deg) brightness(150%)';
+          
+          count++;
+          if (count > 20) {
+            clearInterval(interval);
+            document.body.style.cssText = originalStyle;
+            setHelpText('ERROR: PERMISSION_DENIED. \nREASON: EMIR IS TOO POWERFUL TO BE DELETED. \nACTION: GO BACK TO WORK.');
+          }
+        }, 100);
         break;
       default:
         setHelpText('Unknown command. Type "help" for available commands.');
@@ -52,29 +71,44 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="w-full md:w-96 font-mono text-sm bg-zinc-950 p-6 border border-zinc-900">
-            <div className="flex gap-2 mb-2">
-              <span className="text-green-500">➜</span>
-              <span className="text-blue-500">~/emir</span>
-              <span className="text-zinc-500 uppercase tracking-tighter">git commit -m &quot;innovation&quot;</span>
-            </div>
-            <p className="text-zinc-600 mb-4 italic text-xs uppercase tracking-tighter">{"// type command to contact"}</p>
-            <div className="flex items-center gap-2">
-              <span className="text-zinc-500">$</span>
-              <input 
-                type="text" 
-                placeholder="mail emir..." 
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="bg-transparent border-none outline-none text-white w-full placeholder:text-zinc-800 uppercase"
-              />
-            </div>
-            {helpText && (
-              <div className="mt-2 bg-zinc-900 p-2 rounded">
-                <pre className="text-green-500 font-mono">{helpText}</pre>
+          <div className="w-full md:w-96 overflow-hidden border border-zinc-900 bg-zinc-950 rounded-xs shadow-2xl transition-all hover:border-zinc-700">
+            <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-900 bg-zinc-900/30">
+              <div className="flex gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-zinc-800" />
+                <div className="w-2 h-2 rounded-full bg-zinc-800" />
+                <div className="w-2 h-2 rounded-full bg-zinc-800" />
               </div>
-            )}
+              <span className="text-[10px] text-zinc-600 font-mono tracking-tighter uppercase">bash — 80x24</span>
+            </div>
+            
+            <div className="p-6 font-mono text-xs leading-relaxed">
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-emerald-500">➜</span>
+                <span className="text-sky-500">~/emir</span>
+                <span className="text-zinc-600 italic">git commit -m &quot;innovation&quot;</span>
+              </div>
+              
+              <div className="flex items-start gap-2">
+                <span className="text-emerald-500">$</span>
+                <div className="flex-1">
+                  <input 
+                    type="text" 
+                    placeholder="type 'help' for commands..." 
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="bg-transparent border-none outline-none text-zinc-100 w-full placeholder:text-zinc-800 caret-emerald-500"
+                    autoComplete="off"
+                    spellCheck="false"
+                  />
+                  {helpText && (
+                    <div className="mt-4 py-2 border-t border-zinc-900/50">
+                      <pre className="text-emerald-500/90 whitespace-pre-wrap">{helpText}</pre>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         

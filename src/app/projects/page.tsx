@@ -89,7 +89,7 @@ export default function Projects() {
                 {categories.map((cat) => (
                   <button
                     key={cat}
-                    onClick={() => setFilter(cat as any)}
+                    onClick={() => setFilter(cat as ProjectType | "ALL")}
                     className={`text-left uppercase font-bold text-xs tracking-widest transition-all ${
                       filter === cat 
                         ? "text-white translate-x-2" 
