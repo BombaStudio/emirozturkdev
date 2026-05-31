@@ -1,7 +1,42 @@
 import { portfolio } from "../src/data/portfolio";
 import { Github, Linkedin, Youtube, Mail, Twitter } from "lucide-react";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Footer() {
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState('');
+  const [helpText, setHelpText] = useState('');
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleCommand(inputValue);
+      setInputValue('');
+    }
+  };
+
+  const handleCommand = (command: string) => {
+    switch (command.toLowerCase()) {
+      case 'help':
+        setHelpText('Available commands: cd projects, mail, sudo rm -rf /');
+        break;
+      case 'cd projects':
+        router.push('/projects');
+        break;
+      case 'mail':
+        window.location.href = `mailto:${portfolio.personal.contact.email}`;
+        break;
+      case 'sudo rm -rf /':
+        document.body.style.backgroundColor = 'red';
+        setTimeout(() => {
+          document.body.style.backgroundColor = '';
+        }, 1000);
+        break;
+      default:
+        setHelpText('Unknown command. Type "help" for available commands.');
+    }
+  };
+
   return (
     <footer className="px-6 md:px-24 py-32 border-t border-zinc-900 bg-black w-full">
       <div className="max-w-7xl mx-auto">
@@ -29,9 +64,17 @@ export default function Footer() {
               <input 
                 type="text" 
                 placeholder="mail emir..." 
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className="bg-transparent border-none outline-none text-white w-full placeholder:text-zinc-800 uppercase"
               />
             </div>
+            {helpText && (
+              <div className="mt-2 bg-zinc-900 p-2 rounded">
+                <pre className="text-green-500 font-mono">{helpText}</pre>
+              </div>
+            )}
           </div>
         </div>
         
