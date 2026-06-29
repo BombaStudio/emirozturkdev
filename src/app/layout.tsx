@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./globals.css";
-import Header from "../../components/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Emir Öztürk",
-  description: "Emir Öztürk - Software Developer",
+  title: {
+    default: "Emir Öztürk — Software Developer",
+    template: "%s — Emir Öztürk",
+  },
+  description:
+    "Software Developer & Physics Student based in İzmir, Turkey. Building game engines, full-stack web apps, and blockchain solutions.",
 };
 
 export default function RootLayout({
@@ -28,15 +34,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <SpeedInsights/>
-      <Analytics/>
+      <SpeedInsights />
+      <Analytics />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-zinc-50 dark:bg-black`}
+        className={`${dmSans.variable} ${jetbrainsMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <Header />
-        <div className="flex-1 w-full">
-            {children}
-        </div>
+        <div className="flex-1 w-full pt-16">{children}</div>
         <Footer />
       </body>
     </html>

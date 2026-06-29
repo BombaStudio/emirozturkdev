@@ -2,114 +2,109 @@
 
 import { useState } from "react";
 import { portfolio, ProjectType } from "../../data/portfolio";
-import { MoveRight } from "lucide-react";
 
 export default function Projects() {
-  const [filter, setFilter] = useState<ProjectType | "ALL">("ALL");
+  const [filter, setFilter] = useState<ProjectType | "all">("all");
 
-  const filteredProjects = filter === "ALL" 
-    ? portfolio.projects 
-    : portfolio.projects.filter(p => p.type === filter);
+  const filteredProjects =
+    filter === "all"
+      ? portfolio.projects
+      : portfolio.projects.filter((p) => p.type === filter);
 
-  const categories = ["ALL", ...Object.values(ProjectType)];
+  const categories: { label: string; value: ProjectType | "all" }[] = [
+    { label: "All", value: "all" },
+    { label: "Web", value: ProjectType.WEB },
+    { label: "Mobile", value: ProjectType.MOBILE },
+    { label: "Game", value: ProjectType.GAME },
+    { label: "AI", value: ProjectType.AI },
+    { label: "System", value: ProjectType.SYSTEM },
+    { label: "Web3", value: ProjectType.WEB3 },
+    { label: "Other", value: ProjectType.OTHER },
+  ];
 
   return (
-    <main className="min-h-screen bg-black pt-32 px-6 md:px-24">
-      <div className="max-w-7xl mx-auto">
-        <header className="mb-24">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-8">
-            ENGINEERING_ARCHIVE
+    <main className="min-h-screen">
+      <div className="max-w-5xl mx-auto px-6 pt-12 pb-20">
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
+            Projects
           </h1>
-          <p className="max-w-2xl text-lg text-zinc-500 uppercase font-medium leading-tight">
-            A repository of hardcore systems, game engines, and decentralized experiments. Built to solve pain.
+          <p className="text-base text-zinc-500 max-w-xl">
+            A collection of software I&apos;ve built — from game engines to web
+            platforms.
           </p>
-        </header>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          {/* PROJECTS LIST */}
-          <div className="md:col-span-9 flex flex-col divide-y divide-zinc-900 border-t border-zinc-900">
-            {filteredProjects.map((project, i) => (
-              <div 
-                key={project.title} 
-                className="group py-12 flex flex-col md:grid md:grid-cols-8 gap-8 items-start hover:bg-zinc-950 transition-colors cursor-pointer"
-              >
-                <div className="col-span-1 text-zinc-700 font-mono text-xs uppercase">
-                  ID_{i + 1}
-                </div>
-                
-                <div className="col-span-5 flex flex-col">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest bg-zinc-900 px-2 py-0.5">
-                      {project.type}
-                    </span>
-                    <span className="text-[10px] font-bold text-zinc-700 uppercase tracking-widest">
-                      {project.tag}
-                    </span>
-                  </div>
-                  <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:translate-x-2 transition-transform">
-                    {project.title}
-                  </h2>
-                  <p className="mt-4 text-zinc-400 text-sm md:text-base max-w-xl">
-                    {project.description}
-                  </p>
-                </div>
+        {/* Filter Pills */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat.value}
+              onClick={() => setFilter(cat.value)}
+              className={`px-3.5 py-1.5 text-sm rounded-full border transition-colors cursor-pointer ${
+                filter === cat.value
+                  ? "bg-white text-black border-white"
+                  : "border-zinc-800 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-                <div className="col-span-2 flex flex-col items-start md:items-end gap-4">
-                  <div className="flex flex-wrap gap-2 md:justify-end">
-                    {project.techStack.map(tech => (
-                      <span key={tech} className="text-[8px] border border-zinc-800 px-2 py-0.5 text-zinc-600 uppercase tracking-tighter">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 mt-auto">
-                     <a 
-                      href={project.link} 
-                      target="_blank" 
-                      className="flex items-center gap-2 text-[10px] font-bold text-white hover:text-zinc-400 transition-colors uppercase tracking-[0.2em]"
-                    >
-                      DEPLOYMENT <MoveRight size={10} />
-                     </a>
-                  </div>
-                </div>
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filteredProjects.map((project) => (
+            <a
+              key={project.title}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block border border-zinc-800/50 rounded-lg p-5 hover:border-zinc-600 transition-colors"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[11px] font-mono text-zinc-600 bg-zinc-800/50 px-2 py-0.5 rounded">
+                  {project.type}
+                </span>
+                {project.tag !== "project" && (
+                  <span className="text-[11px] font-mono text-zinc-700">
+                    {project.tag}
+                  </span>
+                )}
               </div>
-            ))}
-            {filteredProjects.length === 0 && (
-              <div className="py-24 text-center">
-                <p className="text-zinc-500 uppercase font-mono text-xs">NO_PROJECTS_FOUND_IN_THIS_CATEGORY</p>
-              </div>
-            )}
-          </div>
-
-          {/* FILTER SIDEBAR (RIGHT) */}
-          <div className="md:col-span-3">
-            <div className="sticky top-32">
-              <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] mb-8">FILTERS</h3>
-              <div className="flex flex-col gap-4">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setFilter(cat as ProjectType | "ALL")}
-                    className={`text-left uppercase font-bold text-xs tracking-widest transition-all ${
-                      filter === cat 
-                        ? "text-white translate-x-2" 
-                        : "text-zinc-600 hover:text-zinc-400"
-                    }`}
+              <h2 className="text-base font-semibold text-white group-hover:text-green-400 transition-colors mb-2">
+                {project.title}
+              </h2>
+              <p className="text-sm text-zinc-500 mb-4 line-clamp-2">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[11px] font-mono text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded"
                   >
-                    {cat}
-                    {filter === cat && <span className="ml-2">_</span>}
-                  </button>
+                    {tech}
+                  </span>
                 ))}
               </div>
+            </a>
+          ))}
+        </div>
 
-              <div className="mt-24 pt-8 border-t border-zinc-900">
-                <p className="text-[10px] text-zinc-600 uppercase leading-relaxed">
-                  Filtering by engineering classification. <br />
-                  Select a category to narrow the archive.
-                </p>
-              </div>
-            </div>
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-zinc-500 text-sm">
+              No projects found in this category.
+            </p>
           </div>
+        )}
+
+        {/* Count */}
+        <div className="mt-8 text-xs text-zinc-600 font-mono">
+          Showing {filteredProjects.length} of {portfolio.projects.length}{" "}
+          projects
         </div>
       </div>
     </main>

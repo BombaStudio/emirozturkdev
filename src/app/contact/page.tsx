@@ -1,132 +1,179 @@
 "use client";
 
 import { portfolio } from "../../data/portfolio";
-import { MoveRight } from "lucide-react";
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Contact() {
-  const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
-  const [formMessage, setFormMessage] = useState('');
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, message }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Failed to send message');
-      }
+      if (!response.ok) throw new Error("Failed to send");
 
-      const data = await response.json();
-      setFormMessage(data.message);
-      setName('');
-      setMessage('');
-    } catch (error) {
-      console.error('Error sending message:', error);
-      setFormMessage('Internal Server Error');
+      setStatus("success");
+      setName("");
+      setMessage("");
+    } catch {
+      setStatus("error");
     }
   };
 
+  const socialLinks = [
+    { name: "GitHub", url: portfolio.personal.contact.github },
+    { name: "LinkedIn", url: portfolio.personal.contact.linkedin },
+    { name: "X / Twitter", url: portfolio.personal.contact.twitter },
+    ...(portfolio.personal.contact.youtube
+      ? [{ name: "YouTube", url: portfolio.personal.contact.youtube }]
+      : []),
+    ...(portfolio.personal.contact.reddit
+      ? [{ name: "Reddit", url: portfolio.personal.contact.reddit }]
+      : []),
+    ...(portfolio.personal.contact.itchio
+      ? [{ name: "itch.io", url: portfolio.personal.contact.itchio }]
+      : []),
+    ...(portfolio.personal.contact.taikai
+      ? [{ name: "Taikai", url: portfolio.personal.contact.taikai }]
+      : []),
+    ...(portfolio.personal.contact.playstore
+      ? [{ name: "Play Store", url: portfolio.personal.contact.playstore }]
+      : []),
+  ];
+
   return (
-    <main className="min-h-screen bg-black pt-48 px-6 md:px-24 flex flex-col items-center">
-      <div className="max-w-4xl w-full">
-        <header className="mb-24 text-center md:text-left">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4">
-            COMM_UPLINK
+    <main className="min-h-screen">
+      <div className="max-w-5xl mx-auto px-6 pt-12 pb-20">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
+            Contact
           </h1>
-          <p className="text-zinc-500 uppercase font-bold tracking-[0.3em] text-[10px]">
-            STATUS: READY_FOR_INPUT {"//"} ENCRYPTED_CHANNEL
+          <p className="text-base text-zinc-500 max-w-xl">
+            Have a project in mind or want to collaborate? Get in touch.
           </p>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
-          <div className="flex flex-col gap-12">
-            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-600 uppercase">DIRECT_CHANNELS</h2>
-            <div className="flex flex-col gap-8">
-              <a 
-                href={`mailto:${portfolio.personal.contact.email}`} 
-                className="group flex flex-col items-start gap-2"
-              >
-                <span className="text-zinc-700 font-mono text-[9px]">01 {"//"} EMAIL</span>
-                <span className="text-2xl font-bold uppercase group-hover:text-zinc-400 transition-colors flex items-center gap-4">
-                  SEND_DATA <MoveRight size={20} />
-                </span>
-              </a>
-
-              <div className="flex flex-col gap-4">
-                <span className="text-zinc-700 font-mono text-[9px]">02 {"//"} LOCATION</span>
-                <span className="text-lg font-bold uppercase text-zinc-300">
-                  Bornova, İzmir, TR {"//"} REMOTE_ENABLED
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-12">
-            <h2 className="text-[10px] font-bold tracking-[0.3em] text-zinc-600 uppercase">SOCIAL_NODES</h2>
-            <div className="grid grid-cols-2 gap-8">
-              {Object.entries(portfolio.personal.contact).map(([platform, url]) => {
-                if (platform === "email") return null;
-                return (
-                  <a 
-                    key={platform} 
-                    href={url as string} 
-                    target="_blank"
-                    className="flex flex-col group"
-                  >
-                    <span className="text-zinc-700 font-mono text-[9px] uppercase">{platform}</span>
-                    <span className="text-base font-bold uppercase group-hover:text-white transition-colors">
-                      LINK_UPLINK
-                    </span>
-                  </a>
-                )
-              })}
-            </div>
-
-            <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-              <input 
-                type="text" 
-                placeholder="Name" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="bg-zinc-900 text-white px-4 py-2 rounded"
-              />
-              <textarea 
-                placeholder="Message" 
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-                className="bg-zinc-900 text-white px-4 py-2 rounded"
-              />
-              <button type="submit" className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded">
-                SUBMIT
-              </button>
-            </form>
-
-            {formMessage && (
-              <div className="mt-4 font-bold uppercase text-zinc-600">
-                {formMessage}
-              </div>
-            )}
-          </div>
         </div>
 
-        <div className="mt-32 p-8 border border-zinc-900 bg-zinc-950 font-mono text-xs text-zinc-600 leading-relaxed uppercase tracking-tighter">
-          <p>
-            {"// CAUTION: SYSTEM ARCHITECTURE IS RAW."} <br />
-            {"// ALL COMMUNICATION IS HANDLED WITH LOW-LEVEL PRIORITY."} <br />
-            {"// IF CRYING DOESN'T EASE THE PAIN, THEN WE'D HAVE TO WORK."} <br />
-            {"// INITIATE CONTACT IF YOU HAVE COMPLEX PROBLEMS."}
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {/* Contact Info */}
+          <div className="flex flex-col gap-8">
+            {/* Email */}
+            <div>
+              <h2 className="text-xs font-medium text-zinc-500 mb-3 font-mono">
+                Email
+              </h2>
+              <a
+                href={`mailto:${portfolio.personal.contact.email}`}
+                className="text-base text-zinc-300 hover:text-white transition-colors"
+              >
+                {portfolio.personal.contact.email}
+              </a>
+            </div>
+
+            {/* Location */}
+            <div>
+              <h2 className="text-xs font-medium text-zinc-500 mb-3 font-mono">
+                Location
+              </h2>
+              <p className="text-base text-zinc-300">
+                {portfolio.personal.location}
+              </p>
+              <p className="text-sm text-zinc-600 mt-1">
+                Available for remote work
+              </p>
+            </div>
+
+            {/* Social Links */}
+            <div>
+              <h2 className="text-xs font-medium text-zinc-500 mb-3 font-mono">
+                Profiles
+              </h2>
+              <div className="grid grid-cols-2 gap-2">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-zinc-400 hover:text-white transition-colors py-1"
+                  >
+                    {link.name} →
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div>
+            <h2 className="text-xs font-medium text-zinc-500 mb-4 font-mono">
+              Send a Message
+            </h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="name"
+                  className="text-sm text-zinc-500"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  placeholder="Your name"
+                  className="bg-transparent border border-zinc-800 text-white px-4 py-2.5 text-sm rounded-md outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="message"
+                  className="text-sm text-zinc-500"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                  rows={5}
+                  placeholder="Your message..."
+                  className="bg-transparent border border-zinc-800 text-white px-4 py-2.5 text-sm rounded-md outline-none focus:border-zinc-500 transition-colors placeholder:text-zinc-700 resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="bg-white text-black px-5 py-2.5 text-sm font-medium rounded-md hover:bg-zinc-200 transition-colors cursor-pointer disabled:opacity-50"
+              >
+                {status === "sending" ? "Sending..." : "Send Message"}
+              </button>
+
+              {status === "success" && (
+                <p className="text-sm text-green-500">
+                  Message sent successfully!
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-red-400">
+                  Something went wrong. Please try again or email directly.
+                </p>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </main>
