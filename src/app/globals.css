@@ -54,7 +54,7 @@ html {
     font-family: var(--font-sans), Arial, sans-serif !important;
     font-size: 10pt !important;
   }
-  header, footer, nav, .print-hide {
+  body > header, body > footer, nav, .print-hide {
     display: none !important;
   }
   a {

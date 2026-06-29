@@ -6,7 +6,8 @@ import { portfolio, ProjectType } from "../../data/portfolio";
 type ResumeTitle =
   | "Software Developer"
   | "Game Developer"
-  | "Full Stack Developer";
+  | "Full Stack Developer"
+  | "Mobile Developer";
 
 const titleConfig: Record<
   ResumeTitle,
@@ -47,6 +48,12 @@ const titleConfig: Record<
     projectTypes: [ProjectType.WEB, ProjectType.MOBILE, ProjectType.AI],
     highlightSkills: ["Languages", "Frontend", "Backend", "Tools & Other"],
   },
+  "Mobile Developer": {
+    summary:
+      "Mobile developer with expertise in React Native, Flutter, and native Android development. Skilled in creating cross-platform applications with a focus on performance and user experience.",
+    projectTypes: [ProjectType.MOBILE],
+    highlightSkills: ["Languages", "Frontend", "Backend", "Tools & Other"],
+  }
 };
 
 export default function Resume() {
@@ -106,11 +113,10 @@ export default function Resume() {
             <button
               key={title}
               onClick={() => setSelectedTitle(title)}
-              className={`px-4 py-2 text-sm rounded-full border transition-colors cursor-pointer ${
-                selectedTitle === title
-                  ? "bg-white text-black border-white"
-                  : "border-zinc-800 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300"
-              }`}
+              className={`px-4 py-2 text-sm rounded border transition-colors cursor-pointer ${selectedTitle === title
+                ? "bg-white text-black border-white"
+                : "border-zinc-800 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300"
+                }`}
             >
               {title}
             </button>
@@ -129,6 +135,7 @@ export default function Resume() {
             </p>
             <div className="flex flex-wrap gap-x-6 gap-y-1 mt-3 text-sm text-zinc-500 font-mono print:text-black print:font-sans">
               <span>{personal.contact.email}</span>
+              {personal.contact.phone && personal.contact.phone !== "" && <span>{personal.contact.phone}</span>}
               <span>{personal.location}</span>
               <a
                 href={personal.contact.github}
@@ -141,6 +148,12 @@ export default function Resume() {
                 className="hover:text-white transition-colors print:text-black print:underline"
               >
                 linkedin.com/in/emir-ozturk-dev
+              </a>
+              <a
+                href="https://emirozturkdev.vercel.app"
+                className="hover:text-white transition-colors print:text-black print:underline"
+              >
+                emirozturkdev.vercel.app
               </a>
             </div>
           </header>
@@ -177,7 +190,7 @@ export default function Resume() {
                   <p className="text-xs text-zinc-600 mb-1 print:text-zinc-700">
                     {job.location}
                   </p>
-                  <p className="text-sm text-zinc-400 leading-relaxed print:text-black print:font-sans">
+                  <p className="text-sm text-zinc-400 leading-relaxed print:text-black print:font-sans whitespace-pre-line">
                     {job.description}
                   </p>
                 </div>
@@ -212,7 +225,7 @@ export default function Resume() {
             <h3 className="text-xs font-medium text-zinc-500 mb-4 font-mono print:text-black print:font-bold print:text-sm print:font-sans print:border-b print:border-black print:pb-1">
               Skills
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-1 gap-4">
               {relevantSkills.map((skillGroup) => (
                 <div key={skillGroup.category}>
                   <h4 className="text-xs font-medium text-zinc-500 mb-2 print:text-black print:font-bold">
@@ -222,8 +235,9 @@ export default function Resume() {
                     {skillGroup.items.map((skill) => (
                       <span
                         key={skill}
-                        className="text-xs font-mono text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded print:bg-transparent print:border print:border-zinc-300 print:text-black print:font-sans"
+                        className="text-xs font-mono text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded print:bg-transparent print:text-black print:font-sans"
                       >
+                        {/*print:border print:border-zinc-300 */}
                         {skill}
                       </span>
                     ))}
@@ -238,20 +252,25 @@ export default function Resume() {
             <h3 className="text-xs font-medium text-zinc-500 mb-4 font-mono print:text-black print:font-bold print:text-sm print:font-sans print:border-b print:border-black print:pb-1">
               Selected Projects
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-1 gap-4">
               {relevantProjects.map((project) => (
                 <div
                   key={project.title}
                   className="print:break-inside-avoid"
                 >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-semibold text-white hover:text-green-400 transition-colors print:text-black print:underline print:no-underline"
-                  >
-                    {project.title}
-                  </a>
+                  <div className="flex items-baseline flex-wrap">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-white hover:text-green-400 transition-colors print:text-black print:underline"
+                    >
+                      {project.title}
+                    </a>
+                    <span className="hidden print:inline text-[11px] text-zinc-500 font-mono ml-2">
+                      — {project.link.replace("https://", "")}
+                    </span>
+                  </div>
                   <p className="text-xs text-zinc-500 mt-0.5 line-clamp-1 print:text-black print:font-sans">
                     {project.description}
                   </p>
@@ -263,7 +282,7 @@ export default function Resume() {
                       >
                         {tech}
                         {project.techStack.indexOf(tech) <
-                        project.techStack.length - 1
+                          project.techStack.length - 1
                           ? " ·"
                           : ""}
                       </span>

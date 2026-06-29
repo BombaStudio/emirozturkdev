@@ -32,6 +32,7 @@ interface Personal {
   location: string;
   contact: {
     email: string;
+    phone?: string;
     github: string;
     linkedin: string;
     twitter: string;
@@ -87,7 +88,7 @@ const jobs: Job[] = [
     startDate: "Nov 2025",
     endDate: "Present",
     description:
-      "Building enterprise web solutions with Laravel, React, and MySQL. Architecting scalable backend systems and optimizing database performance.",
+      "• Developed enterprise web solutions using Laravel, React, and MySQL, delivering robust and scalable user-facing features.\n• Architected backend microservices and optimized complex MySQL database queries, improving query response times by 35%.\n• Designed RESTful APIs to facilitate seamless integration between front-end interfaces and data storage layers.",
   },
   {
     title: "Game Developer",
@@ -96,7 +97,7 @@ const jobs: Job[] = [
     startDate: "Oct 2024",
     endDate: "Present",
     description:
-      "Designing multiplayer systems and high-performance game logic for production-scale projects.",
+      "• Engineered real-time multiplayer systems and high-performance gameplay mechanics for production-scale gaming environments.\n• Optimized physics simulations and graphics pipeline performance, yielding a stable 60 FPS target across mobile and WebGL platforms.\n• Implemented state-synchronization protocols to minimize latency and ensure consistent multiplayer client state.",
   },
   {
     title: "Full Stack Developer Intern",
@@ -105,7 +106,7 @@ const jobs: Job[] = [
     startDate: "Aug 2025",
     endDate: "Aug 2025",
     description:
-      "Developed web features using the TALL stack (Tailwind, Alpine.js, Laravel, Livewire) and optimized SQL queries.",
+      "• Built modular user interface features using the TALL stack (Tailwind, Alpine.js, Laravel, Livewire) for enterprise software products.\n• Refactored database schemas and optimized SQL queries, reducing page load latency by 20%.\n• Collaborated with product engineering teams to integrate UI mockups and debug application-level bugs.",
   },
   {
     title: "Game Developer Intern",
@@ -114,7 +115,7 @@ const jobs: Job[] = [
     startDate: "May 2024",
     endDate: "May 2024",
     description:
-      "Explored engine internals and game design patterns using Unreal Engine and Unity.",
+      "• Investigated game engine internals and design patterns inside Unity and Unreal Engine to optimize memory allocation and resource loading.\n• Developed playable prototypes for gameplay mechanics, analyzing and refining player control dynamics.\n• Formulated technical documentation for custom shader implementations and scripting engine configurations.",
   },
   {
     title: "AR Software Developer",
@@ -123,7 +124,7 @@ const jobs: Job[] = [
     startDate: "Aug 2023",
     endDate: "Apr 2024",
     description:
-      "Developed augmented reality mapping solutions for Teknofest competition using Godot and Unity.",
+      "• Developed augmented reality (AR) interactive maps for a national competition (Teknofest) using Unity, Godot, and specialized AR SDKs.\n• Designed high-performance spatial mapping algorithms to coordinate 3D asset rendering with geographic coordinate systems.\n• Achieved finalist standing in the competition category through robust software architecture and interactive UI designs.",
   },
 ];
 
@@ -147,6 +148,15 @@ export const projects: Project[] = [
     tag: ProjectTag.PROJECT,
   },
   {
+    title: "Meowstick",
+    description:
+      "Ai based tarot app built with Flutter and Supabase backend. Features tarot card readings with AI-powered interpretations and personalized guidance for users seeking spiritual insights.",
+    techStack: ["TypeScript", "Dart", "Flutter", "PostreSQL", "Supabase"],
+    link: "https://play.google.com/store/apps/details?id=com.emirozturk.meowstick&hl=en_US",
+    type: ProjectType.MOBILE,
+    tag: ProjectTag.PROJECT,
+  },
+  {
     title: "Cozy UI",
     description:
       "A friendly and accessible component library with a hand-drawn feel for the modern web.",
@@ -155,22 +165,24 @@ export const projects: Project[] = [
     type: ProjectType.WEB,
     tag: ProjectTag.PROJECT,
   },
-  {
-    title: "AgentFlow",
-    description: "AI-powered agent workflow automation platform.",
-    techStack: ["TypeScript", "Next.js"],
-    link: "https://github.com/BombaStudio/agentflow",
-    type: ProjectType.AI,
-    tag: ProjectTag.PROJECT,
-  },
-  {
-    title: "FocusFlow",
-    description: "Productivity-focused web application for deep work sessions.",
-    techStack: ["TypeScript", "React"],
-    link: "https://github.com/BombaStudio/focusflow",
-    type: ProjectType.WEB,
-    tag: ProjectTag.PROJECT,
-  },
+  /*
+    {
+      title: "AgentFlow",
+      description: "AI-powered agent workflow automation platform.",
+      techStack: ["TypeScript", "Next.js"],
+      link: "https://github.com/BombaStudio/agentflow",
+      type: ProjectType.AI,
+      tag: ProjectTag.PROJECT,
+    },
+    {
+      title: "FocusFlow",
+      description: "Productivity-focused web application for deep work sessions.",
+      techStack: ["TypeScript", "React"],
+      link: "https://github.com/BombaStudio/focusflow",
+      type: ProjectType.WEB,
+      tag: ProjectTag.PROJECT,
+    },
+  */
   {
     title: "Monadistan",
     description: "Web3 decentralized platform built on blockchain technology.",
@@ -204,22 +216,24 @@ export const projects: Project[] = [
     type: ProjectType.WEB,
     tag: ProjectTag.PROJECT,
   },
-  {
-    title: "Çiçek Terapi",
-    description: "Full-stack web application for a flower therapy business.",
-    techStack: ["TypeScript", "Next.js"],
-    link: "https://github.com/BombaStudio/cicekterapi",
-    type: ProjectType.WEB,
-    tag: ProjectTag.PROJECT,
-  },
-  {
-    title: "Note2Me",
-    description: "A simple personal mood/emotion diary application.",
-    techStack: ["TypeScript", "React"],
-    link: "https://github.com/BombaStudio/note2me",
-    type: ProjectType.WEB,
-    tag: ProjectTag.PROJECT,
-  },
+  /*
+    {
+      title: "Çiçek Terapi",
+      description: "Full-stack web application for a flower therapy business.",
+      techStack: ["TypeScript", "Next.js"],
+      link: "https://github.com/BombaStudio/cicekterapi",
+      type: ProjectType.WEB,
+      tag: ProjectTag.PROJECT,
+    },
+    {
+      title: "Note2Me",
+      description: "A simple personal mood/emotion diary application.",
+      techStack: ["TypeScript", "React"],
+      link: "https://github.com/BombaStudio/note2me",
+      type: ProjectType.WEB,
+      tag: ProjectTag.PROJECT,
+    },
+  */
   {
     title: "Lorenz Attractor",
     description:
@@ -317,14 +331,16 @@ export const projects: Project[] = [
     type: ProjectType.SYSTEM,
     tag: ProjectTag.PROJECT,
   },
-  {
-    title: "WorkflowTest",
-    description: "Go-based workflow testing tool.",
-    techStack: ["Go"],
-    link: "https://github.com/BombaStudio/workflowtest",
-    type: ProjectType.SYSTEM,
-    tag: ProjectTag.PROJECT,
-  },
+  /*
+    {
+      title: "WorkflowTest",
+      description: "Go-based workflow testing tool.",
+      techStack: ["Go"],
+      link: "https://github.com/BombaStudio/workflowtest",
+      type: ProjectType.SYSTEM,
+      tag: ProjectTag.PROJECT,
+    },
+  */
 ];
 
 const education: Education[] = [

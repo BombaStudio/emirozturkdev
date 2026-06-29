@@ -152,7 +152,7 @@ export default function Home() {
                   <p className="text-sm text-zinc-500 mt-0.5">
                     {job.company} · {job.location}
                   </p>
-                  <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                  <p className="text-sm text-zinc-400 mt-2 leading-relaxed whitespace-pre-line">
                     {job.description}
                   </p>
                 </div>
