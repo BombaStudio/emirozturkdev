@@ -206,14 +206,18 @@ function loadPortfolioData() {
   const youtube = (personalSub.match(/youtube:\s*["']([^"']+)["']/) || [])[1] || 'https://youtube.com/@GiantProgrammer';
   
   const projectTitles = [];
-  const projectsStart = content.indexOf('const projects: Project[]');
-  const projectsEnd = content.indexOf('const portfolioLinks');
+  const projectsStart = content.indexOf('const projects: Project[]') !== -1
+    ? content.indexOf('const projects: Project[]')
+    : content.indexOf('export const projects: Project[]');
+  const projectsEnd = content.indexOf('export const portfolio');
   if (projectsStart !== -1 && projectsEnd !== -1) {
     const projectsSection = content.substring(projectsStart, projectsEnd);
-    const projTitleRegex = /title:\s*["']([^"']+)["']/g;
-    let match;
-    while ((match = projTitleRegex.exec(projectsSection)) !== null) {
-      projectTitles.push(match[1]);
+    const lines = projectsSection.split('\n');
+    const projTitleRegex = /^\s{2,4}title:\s*["']([^"']+)["']/;
+    for (const line of lines) {
+      if (line.trim().startsWith('//') || line.trim().startsWith('/*') || line.trim().startsWith('*')) continue;
+      const match = line.match(projTitleRegex);
+      if (match) projectTitles.push(match[1]);
     }
   }
 

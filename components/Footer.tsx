@@ -1,4 +1,4 @@
-import { portfolio } from "../src/data/portfolio";
+import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 
 export default function Footer() {
@@ -21,34 +21,34 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-zinc-800/50 print:hidden">
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Brand */}
+    <footer className="border-t border-border print:hidden">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <Link
               href="/"
-              className="text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
+              className="text-sm font-medium text-foreground"
             >
               {portfolio.personal.name}
             </Link>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-sm text-muted">
               {portfolio.personal.role}
             </p>
-            <p className="mt-1 text-sm text-zinc-600">
+            <p className="mt-1 text-sm text-muted/60">
               {portfolio.personal.location}
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h3 className="text-xs font-medium text-zinc-500 mb-4">Pages</h3>
+            <h3 className="text-xs font-medium text-muted mb-4 uppercase tracking-widest">
+              Pages
+            </h3>
             <ul className="flex flex-col gap-2">
               {portfolio.navigation.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-sm text-muted hover:text-foreground transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -57,9 +57,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
-            <h3 className="text-xs font-medium text-zinc-500 mb-4">Links</h3>
+            <h3 className="text-xs font-medium text-muted mb-4 uppercase tracking-widest">
+              Links
+            </h3>
             <ul className="flex flex-col gap-2">
               {socialLinks.map((link) => (
                 <li key={link.name}>
@@ -67,7 +68,7 @@ export default function Footer() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-sm text-muted hover:text-foreground transition-colors"
                   >
                     {link.name}
                   </a>
@@ -77,14 +78,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-6 border-t border-zinc-800/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-xs text-zinc-600">
-            © {new Date().getFullYear()} {portfolio.personal.name}
+        <div className="mt-16 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="text-xs text-muted/60">
+            &copy; {new Date().getFullYear()} {portfolio.personal.name.toUpperCase()}
           </span>
           <a
             href={`mailto:${portfolio.personal.contact.email}`}
-            className="text-xs text-zinc-500 hover:text-white transition-colors"
+            className="text-xs text-muted hover:text-foreground transition-colors"
           >
             {portfolio.personal.contact.email}
           </a>

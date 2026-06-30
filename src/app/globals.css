@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-muted: #a1a1aa;
-  --color-border: #27272a;
-  --color-accent: #22c55e;
+  --color-background: #f8f7f4;
+  --color-foreground: #1a1a18;
+  --color-muted: #7a7a76;
+  --color-border: #e0dfdc;
+  --color-surface: #ffffff;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
@@ -18,7 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Clean Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-weight: 700;
@@ -28,33 +27,31 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   line-height: 1.7;
-  color: #a1a1aa;
+  color: var(--color-muted);
 }
 
 a {
   transition: color 0.2s ease;
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection */
 ::selection {
-  background-color: #22c55e;
-  color: #000000;
+  background-color: var(--color-foreground);
+  color: var(--color-background);
 }
 
-/* Print Styles */
 @media print {
   body {
     background: #ffffff !important;
     color: #000000 !important;
-    font-family: var(--font-sans), Arial, sans-serif !important;
-    font-size: 10pt !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
   }
-  body > header, body > footer, nav, .print-hide {
+  body > header, body > footer, nav, .print\:hidden {
     display: none !important;
   }
   a {
@@ -63,5 +60,6 @@ html {
   }
   * {
     box-shadow: none !important;
+    text-shadow: none !important;
   }
 }

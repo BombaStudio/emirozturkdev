@@ -1,4 +1,4 @@
-import { portfolio } from "../data/portfolio";
+import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 
 export default function Home() {
@@ -6,64 +6,62 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-24 pb-20">
-        <p className="text-sm text-zinc-500 mb-4 font-mono">Hi, I&apos;m</p>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
+      <section className="max-w-6xl mx-auto px-6 md:px-24 pt-32 pb-28">
+        <p className="text-sm text-muted font-mono mb-5">Hi, I&apos;m</p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
           {portfolio.personal.name}
         </h1>
-        <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-8 leading-relaxed">
+        <p className="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
           {portfolio.personal.intro}
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col md:flex-row gap-6">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 text-sm font-medium rounded-md hover:bg-zinc-200 transition-colors"
+            className="text-sm text-foreground/60 hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-all"
           >
             View Projects
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-300 px-5 py-2.5 text-sm font-medium rounded-md hover:border-zinc-500 hover:text-white transition-colors"
+            className="text-sm text-foreground/60 hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-all"
           >
             Contact Me
           </Link>
         </div>
       </section>
 
-      {/* About */}
-      <section className="border-t border-zinc-800/50">
-        <div className="max-w-5xl mx-auto px-6 py-20">
-          <h2 className="text-xs font-medium text-zinc-500 mb-6 font-mono">
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
+          <h2 className="text-xs font-medium text-muted mb-8 font-mono uppercase tracking-widest">
             About
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <p className="text-base text-zinc-400 leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <p className="text-base text-foreground/80 leading-relaxed">
               {portfolio.personal.about}
             </p>
-            <div className="flex flex-col gap-4 text-sm text-zinc-500">
+            <div className="flex flex-col gap-6 text-sm text-muted">
               <div>
-                <span className="text-zinc-600 font-mono text-xs">
+                <span className="text-muted font-mono text-xs uppercase tracking-widest">
                   Location
                 </span>
-                <p className="text-zinc-300 mt-1">
+                <p className="text-foreground/80 mt-1.5">
                   {portfolio.personal.location}
                 </p>
               </div>
               <div>
-                <span className="text-zinc-600 font-mono text-xs">
+                <span className="text-muted font-mono text-xs uppercase tracking-widest">
                   Education
                 </span>
-                <p className="text-zinc-300 mt-1">
+                <p className="text-foreground/80 mt-1.5">
                   {portfolio.education[0].degree} —{" "}
                   {portfolio.education[0].institution}
                 </p>
               </div>
               <div>
-                <span className="text-zinc-600 font-mono text-xs">
+                <span className="text-muted font-mono text-xs uppercase tracking-widest">
                   Focus Areas
                 </span>
-                <p className="text-zinc-300 mt-1">
+                <p className="text-foreground/80 mt-1.5">
                   Full-Stack Web, Game Engines, Mobile, Web3
                 </p>
               </div>
@@ -72,45 +70,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="border-t border-zinc-800/50">
-        <div className="max-w-5xl mx-auto px-6 py-20">
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-xs font-medium text-zinc-500 font-mono">
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-xs font-medium text-muted font-mono uppercase tracking-widest">
               Featured Projects
             </h2>
             <Link
               href="/projects"
-              className="text-sm text-zinc-500 hover:text-white transition-colors"
+              className="text-sm text-muted hover:text-foreground transition-colors"
             >
-              View all →
+              View all &rarr;
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {featuredProjects.map((project) => (
               <a
                 key={project.title}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block border border-zinc-800/50 rounded-lg p-6 hover:border-zinc-600 transition-colors"
+                className="group block"
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[11px] font-mono text-zinc-600 bg-zinc-800/50 px-2 py-0.5 rounded">
+                <div className="mb-2">
+                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider">
                     {project.type}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-white group-hover:text-green-400 transition-colors mb-2">
+                <h3 className="text-base font-medium text-foreground group-hover:text-foreground/70 transition-colors mb-2">
                   {project.title}
                 </h3>
-                <p className="text-sm text-zinc-500 mb-4 line-clamp-2">
+                <p className="text-sm text-muted leading-relaxed mb-3">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="text-[11px] font-mono text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded"
+                      className="text-[11px] text-muted/60"
                     >
                       {tech}
                     </span>
@@ -122,37 +119,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience */}
-      <section className="border-t border-zinc-800/50">
-        <div className="max-w-5xl mx-auto px-6 py-20">
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-xs font-medium text-zinc-500 font-mono">
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-xs font-medium text-muted font-mono uppercase tracking-widest">
               Experience
             </h2>
             <Link
               href="/resume"
-              className="text-sm text-zinc-500 hover:text-white transition-colors"
+              className="text-sm text-muted hover:text-foreground transition-colors"
             >
-              Full resume →
+              Full resume &rarr;
             </Link>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {portfolio.jobs.map((job, i) => (
               <div
                 key={i}
-                className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2 md:gap-8"
+                className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-3 md:gap-10"
               >
-                <div className="text-sm font-mono text-zinc-600">
-                  {job.startDate} — {job.endDate}
+                <div className="text-sm font-mono text-muted">
+                  {job.startDate} &mdash; {job.endDate}
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-white">
+                  <h3 className="text-base font-medium text-foreground">
                     {job.title}
                   </h3>
-                  <p className="text-sm text-zinc-500 mt-0.5">
-                    {job.company} · {job.location}
+                  <p className="text-sm text-muted mt-0.5">
+                    {job.company} &middot; {job.location}
                   </p>
-                  <p className="text-sm text-zinc-400 mt-2 leading-relaxed whitespace-pre-line">
+                  <p className="text-sm text-foreground/70 mt-3 leading-relaxed whitespace-pre-line">
                     {job.description}
                   </p>
                 </div>

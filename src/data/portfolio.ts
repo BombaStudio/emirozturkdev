@@ -426,9 +426,9 @@ export const portfolio: Portfolio = {
       github: "https://github.com/BombaStudio",
       linkedin: "https://www.linkedin.com/in/emir-ozturk-dev/",
       twitter: "https://x.com/GiantProgrammer",
-      youtube: "https://youtube.com/@GiantProgrammer",
+      youtube: "https://www.youtube.com/@codingyourpain",
       reddit: "https://www.reddit.com/user/itsmethedev/",
-      itchio: "https://giantprogrammer.itch.io/",
+      itchio: "https://giantprogrammer.itch.io",
       taikai: "https://taikai.network/emirozturk",
       playstore:
         "https://play.google.com/store/apps/dev?id=9083417276421261563",
