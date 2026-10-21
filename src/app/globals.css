@@ -1,48 +1,218 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Tema token'ları
+   Mevcut adlar korunur (background, foreground, muted, border, surface).
+   --------------------------------------------------------------------------- */
 @theme inline {
   --color-background: #f8f7f4;
   --color-foreground: #1a1a18;
   --color-muted: #7a7a76;
   --color-border: #e0dfdc;
   --color-surface: #ffffff;
+
+  /* Malzeme & yüzey hiyerarşisi */
+  --color-elevated: #ffffff;
+  --color-hairline: rgb(26 26 24 / 0.08);
+  --color-scrim: rgb(26 26 24 / 0.32);
+
+  /* Apple'ın yumuşak, düşük kontrastlı gölgeleri */
+  --shadow-subtle: 0 1px 2px rgb(26 26 24 / 0.04), 0 4px 16px rgb(26 26 24 / 0.04);
+  --shadow-lifted: 0 2px 6px rgb(26 26 24 / 0.06), 0 12px 32px rgb(26 26 24 / 0.08);
+
+  /* Hareket */
+  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-out: cubic-bezier(0.16, 1, 0.3, 1);
+
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ---------------------------------------------------------------------------
+   Base — DİKKAT: bu kurallar @layer base içinde olmak ZORUNDA.
+   Katmansız yazıldığında Tailwind utility'lerini ezerler (CSS cascade layers):
+   `p { color: muted }` → `text-foreground/80` kaybeder,
+   `h1..h6 { letter-spacing: -0.025em }` → `tracking-widest` kaybeder.
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    line-height: 1.7;
+    color: var(--color-muted);
+    text-wrap: pretty;
+  }
+
+  a {
+    transition: color 0.2s var(--ease-apple);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+/* ---------------------------------------------------------------------------
+   Ortak bileşen sınıfları
+   --------------------------------------------------------------------------- */
+@layer components {
+  /* Mono, geniş tracking'li üst başlık (12px altı okunmaz → 11px + 0.14em) */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Basınç geri bildirimi — pointer-down'da anında (§1 Response) */
+  .pressable {
+    transition-property: transform, translate, color, background-color, border-color, opacity;
+    transition-duration: 160ms;
+    transition-timing-function: var(--ease-apple);
+  }
+  .pressable:active {
+    transform: scale(0.97);
+  }
+
+  /* Yarı saydam materyal (§12) */
+  .material {
+    background-color: color-mix(in srgb, var(--color-background) 74%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  /* Header: scroll ile "kalınlaşan" materyal + kayma kenarı (§12, §11) */
+  .site-header {
+    background-color: color-mix(in srgb, var(--color-background) 74%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    transition:
+      background-color 260ms var(--ease-apple),
+      box-shadow 260ms var(--ease-apple);
+  }
+
+  .site-header::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 14px;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-background) 72%, transparent),
+      transparent
+    );
+    transition: opacity 260ms var(--ease-apple);
+  }
+
+  html[data-scrolled] .site-header {
+    background-color: color-mix(in srgb, var(--color-background) 88%, transparent);
+    box-shadow:
+      0 1px 0 rgb(26 26 24 / 0.05),
+      0 8px 24px rgb(26 26 24 / 0.04);
+  }
+
+  html[data-scrolled] .site-header::after {
+    opacity: 1;
+  }
+
+  /* Bölüm girişi — Reveal adacığı `data-reveal` attribute'u ile sürer */
+  .reveal {
+    transition:
+      opacity 700ms var(--ease-apple-out),
+      transform 700ms var(--ease-apple-out);
+  }
+
+  .reveal[data-reveal="hidden"] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  /* Kart yüzeyi */
+  .card-surface {
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    border: 1px solid var(--color-hairline);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-subtle);
+    transition:
+      transform 240ms var(--ease-apple),
+      translate 240ms var(--ease-apple),
+      box-shadow 240ms var(--ease-apple),
+      border-color 240ms var(--ease-apple);
+  }
 }
 
-p {
-  line-height: 1.7;
-  color: var(--color-muted);
+/* ---------------------------------------------------------------------------
+   Erişilebilirlik (§14)
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pressable:active {
+    transform: none;
+  }
 }
 
-a {
-  transition: color 0.2s ease;
+@media (prefers-reduced-transparency: reduce) {
+  .material,
+  .site-header,
+  .card-surface {
+    background-color: var(--color-surface) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-contrast: more) {
+  .material,
+  .site-header,
+  .card-surface {
+    background-color: var(--color-surface) !important;
+    border: 1px solid var(--color-foreground);
+  }
 }
 
-::selection {
-  background-color: var(--color-foreground);
-  color: var(--color-background);
-}
-
+/* ---------------------------------------------------------------------------
+   Print / ATS — /resume çıktısı (§ ATS)
+   --------------------------------------------------------------------------- */
 @media print {
   body {
     background: #ffffff !important;
@@ -61,5 +231,9 @@ html {
   * {
     box-shadow: none !important;
     text-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

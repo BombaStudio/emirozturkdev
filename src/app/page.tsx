@@ -1,160 +1,181 @@
 import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
+import Reveal from "../../components/reveal";
 
 export default function Home() {
   const featuredProjects = portfolio.projects.slice(0, 6);
+  const currentJob = portfolio.jobs[0];
 
   return (
     <main className="min-h-screen">
-      <section className="max-w-6xl mx-auto px-6 md:px-24 pt-32 pb-28">
-        <p className="text-sm text-muted font-mono mb-5">Hi, I&apos;m</p>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
+      {/* ---------------------------------------------------------------- Hero */}
+      <section className="mx-auto max-w-6xl px-6 pb-24 pt-20 md:px-24 md:pb-32 md:pt-28">
+        <p className="label">Hi, I&apos;m</p>
+
+        <h1 className="mt-4 text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-foreground md:text-7xl">
           {portfolio.personal.name}
         </h1>
-        <p className="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
+
+        <p className="mt-5 font-mono text-sm text-foreground/55">
+          {portfolio.personal.role}
+        </p>
+
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/75 md:text-xl">
           {portfolio.personal.intro}
         </p>
-        <div className="flex flex-col md:flex-row gap-6">
+
+        <div className="mt-10 flex flex-col items-stretch gap-3 md:flex-row md:items-center">
           <Link
             href="/projects"
-            className="text-sm text-foreground/60 hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-all"
+            className="pressable inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background hover:bg-foreground/90"
           >
-            View Projects
+            View projects
+            <span aria-hidden className="text-background/60">
+              &rarr;
+            </span>
           </Link>
           <Link
             href="/contact"
-            className="text-sm text-foreground/60 hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-all"
+            className="pressable inline-flex items-center justify-center rounded-full px-5 py-3 text-sm text-muted hover:text-foreground"
           >
-            Contact Me
+            Get in touch
           </Link>
         </div>
       </section>
 
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
-          <h2 className="text-xs font-medium text-muted mb-8 font-mono uppercase tracking-widest">
-            About
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <p className="text-base text-foreground/80 leading-relaxed">
-              {portfolio.personal.about}
-            </p>
-            <div className="flex flex-col gap-6 text-sm text-muted">
-              <div>
-                <span className="text-muted font-mono text-xs uppercase tracking-widest">
-                  Location
-                </span>
-                <p className="text-foreground/80 mt-1.5">
-                  {portfolio.personal.location}
-                </p>
-              </div>
-              <div>
-                <span className="text-muted font-mono text-xs uppercase tracking-widest">
-                  Education
-                </span>
-                <p className="text-foreground/80 mt-1.5">
-                  {portfolio.education[0].degree} —{" "}
-                  {portfolio.education[0].institution}
-                </p>
-              </div>
-              <div>
-                <span className="text-muted font-mono text-xs uppercase tracking-widest">
-                  Focus Areas
-                </span>
-                <p className="text-foreground/80 mt-1.5">
-                  Full-Stack Web, Game Engines, Mobile, Web3
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* --------------------------------------------------------------- About */}
+      <section className="border-t border-hairline">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-24 md:py-32">
+          <Reveal>
+            <p className="label">About</p>
 
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-xs font-medium text-muted font-mono uppercase tracking-widest">
-              Featured Projects
-            </h2>
-            <Link
-              href="/projects"
-              className="text-sm text-muted hover:text-foreground transition-colors"
-            >
-              View all &rarr;
-            </Link>
-          </div>
-          <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {featuredProjects.map((project) => (
-              <a
-                key={project.title}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <div className="mb-2">
-                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider">
-                    {project.type}
-                  </span>
+            <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr] md:gap-20">
+              <p className="text-base leading-relaxed text-foreground/80">
+                {portfolio.personal.about}
+              </p>
+
+              <dl className="border-t border-hairline text-sm">
+                <div className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-hairline py-3">
+                  <dt className="label">Location</dt>
+                  <dd className="text-foreground/80">{portfolio.personal.location}</dd>
                 </div>
-                <h3 className="text-base font-medium text-foreground group-hover:text-foreground/70 transition-colors mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed mb-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-x-3 gap-y-1">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[11px] text-muted/60"
-                    >
-                      {tech}
+                <div className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-hairline py-3">
+                  <dt className="label">Education</dt>
+                  <dd className="text-foreground/80">
+                    {portfolio.education[0].degree}
+                    <span className="block text-muted">
+                      {portfolio.education[0].institution}
                     </span>
-                  ))}
+                  </dd>
                 </div>
-              </a>
-            ))}
-          </div>
+                <div className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-hairline py-3">
+                  <dt className="label">Currently</dt>
+                  <dd className="text-foreground/80">
+                    {currentJob.title}
+                    <span className="block text-muted">{currentJob.company}</span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-24 py-24">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-xs font-medium text-muted font-mono uppercase tracking-widest">
-              Experience
-            </h2>
-            <Link
-              href="/resume"
-              className="text-sm text-muted hover:text-foreground transition-colors"
-            >
-              Full resume &rarr;
-            </Link>
-          </div>
-          <div className="flex flex-col gap-10">
-            {portfolio.jobs.map((job, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-3 md:gap-10"
+      {/* ------------------------------------------------------------ Projects */}
+      <section className="border-t border-hairline">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-24 md:py-32">
+          <Reveal>
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="label">Featured projects</p>
+              <Link
+                href="/projects"
+                className="pressable text-sm text-muted hover:text-foreground"
               >
-                <div className="text-sm font-mono text-muted">
-                  {job.startDate} &mdash; {job.endDate}
-                </div>
-                <div>
-                  <h3 className="text-base font-medium text-foreground">
-                    {job.title}
+                View all &rarr;
+              </Link>
+            </div>
+
+            <div
+              id="projects"
+              className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {featuredProjects.map((project) => (
+                <a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-surface pressable group flex flex-col p-5 hover:-translate-y-0.5 hover:border-border hover:shadow-[var(--shadow-lifted)]"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="label">{project.type}</span>
+                    <span
+                      aria-hidden
+                      className="text-sm text-muted/40 transition-colors group-hover:text-foreground"
+                    >
+                      &#8599;
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-medium text-foreground">
+                    {project.title}
                   </h3>
-                  <p className="text-sm text-muted mt-0.5">
-                    {job.company} &middot; {job.location}
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {project.description}
                   </p>
-                  <p className="text-sm text-foreground/70 mt-3 leading-relaxed whitespace-pre-line">
-                    {job.description}
-                  </p>
+
+                  <div className="mt-auto flex flex-wrap gap-x-3 gap-y-1 pt-4">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="text-[11px] text-muted/70">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------- Experience */}
+      <section className="border-t border-hairline">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-24 md:py-32">
+          <Reveal>
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="label">Experience</p>
+              <Link
+                href="/resume"
+                className="pressable text-sm text-muted hover:text-foreground"
+              >
+                Full resume &rarr;
+              </Link>
+            </div>
+
+            <div className="mt-8 flex flex-col">
+              {portfolio.jobs.map((job, index) => (
+                <div
+                  key={`${job.company}-${job.startDate}-${index}`}
+                  className="grid grid-cols-1 gap-2 rounded-2xl px-3 py-5 transition-colors hover:bg-surface/70 md:grid-cols-[10rem_1fr] md:gap-8 md:-mx-3"
+                >
+                  <div className="font-mono text-xs text-muted">
+                    {job.startDate} &mdash; {job.endDate}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-medium text-foreground">
+                      {job.title}
+                    </h3>
+                    <p className="mt-0.5 text-sm text-muted">
+                      {job.company} &middot; {job.location}
+                    </p>
+                    <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-foreground/70">
+                      {job.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>

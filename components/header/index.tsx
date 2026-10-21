@@ -1,31 +1,21 @@
 import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
+import NavLinks from "./nav-links";
+import ScrollState from "./scroll-state";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 print:hidden bg-background/90 backdrop-blur-sm border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="site-header fixed inset-x-0 top-0 z-50 print:hidden">
+      <ScrollState />
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
-          className="text-sm font-medium text-foreground tracking-tight"
+          className="pressable text-sm font-medium tracking-tight text-foreground"
         >
           {portfolio.personal.name}
         </Link>
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
-            {portfolio.navigation.map((item) => (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className="text-sm text-muted hover:text-foreground transition-colors"
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <NavLinks />
         <MobileMenu />
       </div>
     </header>
