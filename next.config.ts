@@ -6,10 +6,11 @@ const cspHeader = `
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com https://images.unsplash.com;
   font-src 'self' data:;
-  connect-src 'self' https://api.github.com https://vitals.vercel-insights.com https://va.vercel-scripts.com;
+  connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://github.com https://vitals.vercel-insights.com https://va.vercel-scripts.com;
+  worker-src 'self' blob:;
   frame-ancestors 'none';
   base-uri 'self';
-  form-action 'self';
+  form-action 'self' https://github.com;
   object-src 'none';
 `
   .replace(/\s{2,}/g, " ")
