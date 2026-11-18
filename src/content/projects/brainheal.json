@@ -1,0 +1,23 @@
+{
+  "title": "BrainHeal",
+  "description": "Native Android productivity and mental wellness app built with Jetpack Compose, Room, and Coroutines. Includes daily planning, habit tracking, and local encrypted notes.",
+  "category": "mobile",
+  "date": "2026",
+  "githubLink": "https://github.com/BombaStudio/BrainHeal",
+  "technologies": [
+    "Kotlin",
+    "Jetpack Compose",
+    "Android",
+    "Room",
+    "Coroutines",
+    "Material 3"
+  ],
+  "tags": [
+    "mobile",
+    "android",
+    "jetpack-compose",
+    "kotlin"
+  ],
+  "featured": true,
+  "order": 1
+}

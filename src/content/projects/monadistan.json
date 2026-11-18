@@ -1,0 +1,19 @@
+{
+  "title": "Monadistan",
+  "description": "Web3 decentralized platform built on blockchain technology.",
+  "category": "web3",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/monadistan",
+  "technologies": [
+    "TypeScript",
+    "Solidity",
+    "EVM"
+  ],
+  "tags": [
+    "web3",
+    "solidity",
+    "blockchain"
+  ],
+  "featured": true,
+  "order": 8
+}

@@ -1,0 +1,22 @@
+{
+  "title": "CoupleTest",
+  "description": "Mobile relationship quiz application built with React Native and Supabase. Features customizable couple quizzes generated via custom LLM prompts and real-time score syncing.",
+  "category": "mobile",
+  "date": "2026",
+  "githubLink": "https://github.com/BombaStudio/CoupleTest",
+  "technologies": [
+    "TypeScript",
+    "React Native",
+    "Supabase",
+    "LLM",
+    "PostgreSQL"
+  ],
+  "tags": [
+    "mobile",
+    "react-native",
+    "supabase",
+    "llm"
+  ],
+  "featured": true,
+  "order": 2
+}

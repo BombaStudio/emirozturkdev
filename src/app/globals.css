@@ -224,6 +224,9 @@
   body > header, body > footer, nav, .print\:hidden {
     display: none !important;
   }
+  #main {
+    padding-top: 0 !important;
+  }
   a {
     color: #000000 !important;
     text-decoration: underline !important;

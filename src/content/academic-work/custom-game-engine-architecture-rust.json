@@ -1,0 +1,12 @@
+{
+  "title": "Deterministic Physics and Modular Memory Architectures in 2D Game Engines Using Rust",
+  "type": "presentation",
+  "category": "cs",
+  "date": "2024",
+  "abstract": "Technical symposium presentation examining zero-cost abstractions, data-oriented memory layouts, and bytecode interpreter execution in custom engine development (Talu Engine).",
+  "link": "https://github.com/BombaStudio/Talu",
+  "relatedProject": "talu-engine",
+  "tags": ["Game Engines", "Rust", "Memory Safety", "Deterministic Physics"],
+  "featured": true,
+  "order": 3
+}

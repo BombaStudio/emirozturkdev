@@ -18,6 +18,18 @@ export default function Footer() {
     ...(portfolio.personal.contact.taikai
       ? [{ name: "Taikai", url: portfolio.personal.contact.taikai }]
       : []),
+    ...(portfolio.personal.contact.orcid
+      ? [{ name: "ORCID", url: portfolio.personal.contact.orcid }]
+      : []),
+    ...(portfolio.personal.contact.gdev
+      ? [{ name: "Google Developer", url: portfolio.personal.contact.gdev }]
+      : []),
+    ...(portfolio.personal.contact.hackquest
+      ? [{ name: "HackQuest", url: portfolio.personal.contact.hackquest }]
+      : []),
+    ...(portfolio.personal.contact.tryhackme
+      ? [{ name: "TryHackMe", url: portfolio.personal.contact.tryhackme }]
+      : []),
   ];
 
   return (

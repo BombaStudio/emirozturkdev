@@ -1,0 +1,21 @@
+{
+  "title": "Lorenz Attractor",
+  "description": "Lorenz Attractor chaos simulation built in both Unity and Godot exploring nonlinear dynamical systems.",
+  "category": "game",
+  "date": "2023",
+  "githubLink": "https://github.com/BombaStudio/Lorenz-Attractor",
+  "technologies": [
+    "C#",
+    "GDScript",
+    "Unity",
+    "Godot"
+  ],
+  "tags": [
+    "physics",
+    "simulation",
+    "chaos-theory",
+    "unity"
+  ],
+  "featured": true,
+  "order": 14
+}

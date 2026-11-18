@@ -1,0 +1,18 @@
+{
+  "company": "Icarus Interactive",
+  "role": "Game Developer Intern",
+  "location": "İzmir, Turkey",
+  "startDate": "May 2024",
+  "endDate": "Jun 2024",
+  "description": "Unreal Engine 5 virtual reconstruction demo of Ephesus and Agora ancient sites for the Ministry of Culture and Tourism.\nInvestigated game engine internals and design patterns inside Unity and Unreal Engine to optimize memory allocation and resource loading.\nFormulated technical documentation for custom shader implementations and scripting engine configurations.",
+  "category": "game",
+  "technologies": ["Unreal Engine 5", "Unity", "C++", "C#", "Shaders", "Virtual Reconstruction"],
+  "achievements": [
+    "Developed Unreal Engine 5 virtual reconstruction demo of Ephesus and Agora ancient sites for the Ministry of Culture and Tourism.",
+    "Investigated game engine internals and design patterns inside Unity and Unreal Engine to optimize memory allocation and resource loading.",
+    "Formulated technical documentation for custom shader implementations and scripting engine configurations."
+  ],
+  "tags": ["game", "engine", "internship", "ue5", "virtual-reconstruction"],
+  "featured": false,
+  "order": 3
+}

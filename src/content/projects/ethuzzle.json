@@ -1,0 +1,19 @@
+{
+  "title": "Ethuzzle",
+  "description": "Ethereum-based smart contract puzzle game.",
+  "category": "web3",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/ethuzzle",
+  "technologies": [
+    "Solidity",
+    "Web3",
+    "Ethereum"
+  ],
+  "tags": [
+    "web3",
+    "smart-contracts",
+    "game"
+  ],
+  "featured": false,
+  "order": 9
+}

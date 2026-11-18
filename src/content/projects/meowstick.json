@@ -1,0 +1,22 @@
+{
+  "title": "Meowstick",
+  "description": "AI based tarot app built with Flutter and Supabase backend. Features tarot card readings with AI-powered interpretations and personalized guidance for users seeking spiritual insights.",
+  "category": "mobile",
+  "date": "2026",
+  "liveLink": "https://play.google.com/store/apps/details?id=com.emirozturk.meowstick&hl=en_US",
+  "technologies": [
+    "Dart",
+    "Flutter",
+    "PostgreSQL",
+    "Supabase",
+    "AI"
+  ],
+  "tags": [
+    "mobile",
+    "flutter",
+    "ai",
+    "supabase"
+  ],
+  "featured": true,
+  "order": 3
+}

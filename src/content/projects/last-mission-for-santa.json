@@ -1,0 +1,22 @@
+{
+  "title": "Last Mission for Santa",
+  "description": "Holiday-themed roguelike action game developed with Godot Engine. Won 1st Place at ArgeJam 2024 game jam.",
+  "category": "game",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/last-mission-for-santa",
+  "technologies": [
+    "GDScript",
+    "Godot",
+    "Pixel Art",
+    "Game Jam"
+  ],
+  "tags": [
+    "game",
+    "godot",
+    "gamejam",
+    "winner",
+    "featured"
+  ],
+  "featured": true,
+  "order": 7
+}

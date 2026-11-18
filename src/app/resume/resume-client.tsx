@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { m } from "motion/react";
-import { Portfolio, ProjectType } from "@/data/portfolio";
+import { Portfolio, ProjectType, Publication } from "@/data/portfolio";
 import { spring } from "@/lib/motion";
 
 type ResumeTitle =
@@ -70,16 +70,69 @@ const sectionHeading =
 
 const metaLine = "font-mono text-xs text-muted print:font-sans print:text-black";
 
+function parseDateScore(dateStr?: string, isEnd = false): number {
+  if (!dateStr) return 0;
+  const s = dateStr.trim();
+  if (/present|current|devam/i.test(s)) return 999999;
+  const yr = s.match(/\b(20\d\d|19\d\d)\b/);
+  if (!yr) return 0;
+  const year = parseInt(yr[1], 10);
+  const months: Record<string, number> = {
+    jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+    jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
+  };
+  let month = isEnd ? 12 : 1;
+  const lower = s.toLowerCase();
+  for (const [mName, mVal] of Object.entries(months)) {
+    if (lower.includes(mName)) {
+      month = mVal;
+      break;
+    }
+  }
+  return year * 100 + month;
+}
+
 export default function ResumeClient({ portfolio }: ResumeClientProps) {
   const [selectedTitle, setSelectedTitle] =
     useState<ResumeTitle>("Software Developer");
 
   const config = titleConfig[selectedTitle];
-  const { personal, jobs, education, skills } = portfolio;
+  const { personal, jobs, education, skills, publications } = portfolio;
+  const sortedPublications: Publication[] = useMemo(() => {
+    const list: Publication[] =
+      publications && publications.length > 0
+        ? publications
+        : [
+            {
+              title:
+                "Altın Katkılı Su Bazlı Nanoakışkanların Simülasyonla İncelenmesi",
+              journal: "Applied Nano (MDPI)",
+              date: "Nov 2026",
+              doi: "10.3390/applnano7040037",
+              doiUrl: "https://doi.org/10.3390/applnano7040037",
+              advisor: "Doç. Dr. Emine Mine Çapar",
+              type: "Peer-Reviewed Journal Article",
+              description:
+                "• Conducted computational simulations and thermal conductivity modeling of gold-doped water nanofluids under TÜBİTAK 2209-A University Students Research Project.\n• Presented research findings via poster presentation at the 2024 Turkish Physical Society (TFD) International Physics Congress.\n• Published open-access research evaluating nanoparticle volume fraction effects on nanofluid thermophysical properties.",
+            },
+          ];
+
+    return [...list].sort(
+      (a, b) => parseDateScore(b.date) - parseDateScore(a.date)
+    );
+  }, [publications]);
 
   const relevantProjects = useMemo(() => {
-    return portfolio.projects
+    return [...portfolio.projects]
       .filter((p) => config.projectTypes.includes(p.type))
+      .sort((a, b) => {
+        const dateA = parseDateScore(a.date);
+        const dateB = parseDateScore(b.date);
+        if (dateA !== dateB) {
+          return dateB - dateA;
+        }
+        return (a.title || "").localeCompare(b.title || "");
+      })
       .slice(0, 8);
   }, [portfolio.projects, config.projectTypes]);
 
@@ -88,14 +141,18 @@ export default function ResumeClient({ portfolio }: ResumeClientProps) {
   }, [skills, config.highlightSkills]);
 
   const sortedJobs = useMemo(() => {
-    const titleLower = selectedTitle.toLowerCase();
-    const prefix = titleLower.split(" ")[0];
+    // Sort strictly in reverse-chronological order (newest first to oldest last)
     return [...jobs].sort((a, b) => {
-      const aRelevant = a.title.toLowerCase().includes(prefix) ? -1 : 0;
-      const bRelevant = b.title.toLowerCase().includes(prefix) ? -1 : 0;
-      return aRelevant - bRelevant;
+      const startA = parseDateScore(a.startDate, false);
+      const startB = parseDateScore(b.startDate, false);
+      if (startA !== startB) {
+        return startB - startA;
+      }
+      const endA = parseDateScore(a.endDate, true);
+      const endB = parseDateScore(b.endDate, true);
+      return endB - endA;
     });
-  }, [jobs, selectedTitle]);
+  }, [jobs]);
 
   return (
     <main className="min-h-screen">
@@ -168,6 +225,12 @@ export default function ResumeClient({ portfolio }: ResumeClientProps) {
               <span>github.com/BombaStudio</span>
               <span>linkedin.com/in/emir-ozturk-dev</span>
               <span>emirozturkdev.vercel.app</span>
+              {personal.contact.orcid && (
+                <span>
+                  orcid.org/
+                  {personal.contact.orcid.replace(/^https?:\/\/orcid\.org\//, "")}
+                </span>
+              )}
             </div>
           </header>
 
@@ -225,6 +288,58 @@ export default function ResumeClient({ portfolio }: ResumeClientProps) {
           </section>
 
           <section className="mb-8 print:mb-6 print:break-inside-avoid">
+            <h2 className={sectionHeading}>Publications & Research</h2>
+            <div className="flex flex-col gap-6 print:gap-4">
+              {sortedPublications.map((pub, i) => (
+                <div key={`${pub.title}-${i}`} className="print:break-inside-avoid">
+                  <div className="mb-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                    <h3 className="text-sm font-medium text-foreground print:text-black">
+                      {pub.doiUrl || pub.url ? (
+                        <a
+                          href={pub.doiUrl || pub.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pressable hover:text-foreground/70 print:text-black print:underline"
+                        >
+                          {pub.title}
+                        </a>
+                      ) : (
+                        pub.title
+                      )}
+                      {pub.journal && (
+                        <span className="font-normal text-muted print:text-zinc-700">
+                          {" "}&mdash; {pub.journal}
+                        </span>
+                      )}
+                      {pub.doi && (
+                        <span className="ml-2 hidden text-xs text-muted print:inline">
+                          &mdash; doi.org/{pub.doi.replace(/^https?:\/\/doi\.org\//, "")}
+                        </span>
+                      )}
+                    </h3>
+                    <span className={`${metaLine} shrink-0`}>
+                      {pub.date}
+                    </span>
+                  </div>
+                  {(pub.advisor || pub.type) && (
+                    <p className="mb-1 text-xs text-muted/70 print:text-zinc-700">
+                      {[
+                        pub.type,
+                        pub.advisor ? `Advisor: ${pub.advisor}` : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                  )}
+                  <p className="whitespace-pre-line text-sm leading-relaxed text-foreground/70 print:font-sans print:text-black">
+                    {pub.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-8 print:mb-6 print:break-inside-avoid">
             <h2 className={sectionHeading}>Skills</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 print:grid-cols-1">
               {relevantSkills.map((skillGroup) => (
@@ -264,6 +379,11 @@ export default function ResumeClient({ portfolio }: ResumeClientProps) {
                     <span className="ml-2 hidden text-xs text-muted print:inline">
                       &mdash; {project.link.replace("https://", "")}
                     </span>
+                    {project.date && (
+                      <span className="ml-auto font-mono text-[11px] text-muted/70 print:text-zinc-700">
+                        {project.date}
+                      </span>
+                    )}
                   </div>
                   <p className="mt-0.5 text-xs text-muted print:font-sans print:text-black">
                     {project.description}

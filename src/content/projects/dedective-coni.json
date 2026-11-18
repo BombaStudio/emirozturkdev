@@ -1,0 +1,22 @@
+{
+  "title": "Dedective Coni",
+  "description": "AI suspect interrogation game developed for Google Gemini API Developer Competition 2024. Features a Go backend, dynamic LLM prompt orchestration, and interactive web UI.",
+  "category": "ai",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/Dedective-Coni",
+  "youtubeLink": "https://www.youtube.com/watch?v=7uYKUaeEYcc",
+  "technologies": [
+    "Go",
+    "Gemini API",
+    "JavaScript",
+    "HTML/CSS"
+  ],
+  "tags": [
+    "ai",
+    "gemini-api",
+    "go",
+    "game"
+  ],
+  "featured": true,
+  "order": 6
+}

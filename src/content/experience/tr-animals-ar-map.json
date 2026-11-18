@@ -1,0 +1,18 @@
+{
+  "company": "TR Animals AR Map",
+  "role": "AR Software Developer",
+  "location": "İzmir, Turkey",
+  "startDate": "Aug 2023",
+  "endDate": "Apr 2024",
+  "description": "Developed augmented reality (AR) interactive maps for a national competition (Teknofest 2023 Ankara Finalist) using Unity, Godot, and specialized AR SDKs.\nDesigned high-performance spatial mapping algorithms to coordinate 3D asset rendering with geographic coordinate systems.\nAchieved finalist standing in the competition category through robust software architecture and interactive UI designs.",
+  "category": "mobile",
+  "technologies": ["Unity", "Godot", "AR SDKs", "C#", "Spatial Computing"],
+  "achievements": [
+    "Teknofest 2023 Ankara Finalist with TR Animals AR Map project.",
+    "Developed augmented reality (AR) interactive maps using Unity, Godot, and specialized AR SDKs.",
+    "Designed high-performance spatial mapping algorithms to coordinate 3D asset rendering with geographic coordinate systems."
+  ],
+  "tags": ["ar", "augmented-reality", "teknofest", "unity", "godot"],
+  "featured": true,
+  "order": 4
+}

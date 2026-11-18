@@ -1,0 +1,20 @@
+{
+  "title": "Cozy UI",
+  "description": "A friendly and accessible component library with a hand-drawn feel for the modern web.",
+  "category": "web",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/cozy-ui",
+  "technologies": [
+    "TypeScript",
+    "React",
+    "Tailwind CSS"
+  ],
+  "tags": [
+    "web",
+    "react",
+    "ui",
+    "library"
+  ],
+  "featured": true,
+  "order": 10
+}

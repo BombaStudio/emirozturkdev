@@ -47,7 +47,7 @@ export default function RootLayout({
             Skip to content
           </a>
           <Header />
-          <div id="main" tabIndex={-1} className="flex-1 w-full pt-16 outline-none">
+          <div id="main" tabIndex={-1} className="flex-1 w-full pt-16 print:pt-0 outline-none">
             {children}
           </div>
           <Footer />

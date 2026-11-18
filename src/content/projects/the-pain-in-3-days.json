@@ -1,0 +1,21 @@
+{
+  "title": "The Pain In 3 Days",
+  "description": "Post-earthquake survival and resource management simulation game built with Godot Engine. Awarded 4th Place at DAF Jam 2023.",
+  "category": "game",
+  "date": "2023",
+  "githubLink": "https://github.com/BombaStudio/The-Pain-In-3-Days",
+  "technologies": [
+    "GDScript",
+    "Godot",
+    "Simulation",
+    "Survival"
+  ],
+  "tags": [
+    "game",
+    "godot",
+    "gamejam",
+    "simulation"
+  ],
+  "featured": true,
+  "order": 13
+}

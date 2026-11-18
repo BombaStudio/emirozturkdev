@@ -1,0 +1,18 @@
+{
+  "company": "Fizy Game",
+  "role": "Game Developer",
+  "location": "İzmir, Turkey",
+  "startDate": "Oct 2024",
+  "endDate": "Present",
+  "description": "Engineered real-time multiplayer systems and high-performance gameplay mechanics for production-scale gaming environments.\nOptimized physics simulations and graphics pipeline performance, yielding a stable 60 FPS target across mobile and WebGL platforms.\nImplemented state-synchronization protocols to minimize latency and ensure consistent multiplayer client state.",
+  "category": "game",
+  "technologies": ["Unity", "C#", "Multiplayer", "Physics Optimization", "WebGL"],
+  "achievements": [
+    "Engineered real-time multiplayer systems and high-performance gameplay mechanics for production-scale gaming environments.",
+    "Optimized physics simulations and graphics pipeline performance, yielding a stable 60 FPS target across mobile and WebGL platforms.",
+    "Implemented state-synchronization protocols to minimize latency and ensure consistent multiplayer client state."
+  ],
+  "tags": ["game", "unity", "c#", "multiplayer"],
+  "featured": true,
+  "order": 2
+}

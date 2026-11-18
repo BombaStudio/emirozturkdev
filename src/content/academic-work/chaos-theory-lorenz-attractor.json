@@ -1,0 +1,12 @@
+{
+  "title": "Numerical Analysis of Non-Linear Dynamical Systems: Lorenz Attractor Chaos Simulation",
+  "type": "paper",
+  "category": "physics",
+  "date": "2024",
+  "abstract": "A computational study investigating sensitivity to initial conditions and strange attractor geometry in three-dimensional autonomous ordinary differential equation systems using Runge-Kutta numerical integration.",
+  "link": "https://github.com/BombaStudio/Lorenz-Attractor",
+  "relatedProject": "lorenz-attractor",
+  "tags": ["Chaos Theory", "Numerical Analysis", "Nonlinear Dynamics", "Physics Simulation"],
+  "featured": true,
+  "order": 2
+}

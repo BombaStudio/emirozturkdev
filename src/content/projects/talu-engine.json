@@ -1,0 +1,21 @@
+{
+  "title": "Talu Engine",
+  "description": "A professional-grade 2D game engine built with Rust, scripted using WolfLang. Features modular architecture, built-in physics, and real-time error handling.",
+  "category": "game",
+  "date": "2023",
+  "githubLink": "https://github.com/BombaStudio/Talu",
+  "technologies": [
+    "Rust",
+    "WolfLang",
+    "Game Engines",
+    "Physics"
+  ],
+  "tags": [
+    "game",
+    "engine",
+    "rust",
+    "featured"
+  ],
+  "featured": true,
+  "order": 12
+}

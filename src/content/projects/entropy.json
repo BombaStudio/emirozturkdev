@@ -1,0 +1,20 @@
+{
+  "title": "Entropy",
+  "description": "Offline-first task and finance manager built with React Native and local SQLite for distraction-free productivity.",
+  "category": "mobile",
+  "date": "2026",
+  "githubLink": "https://github.com/BombaStudio/Entropy",
+  "technologies": [
+    "TypeScript",
+    "React Native",
+    "SQLite"
+  ],
+  "tags": [
+    "mobile",
+    "react-native",
+    "sqlite",
+    "offline-first"
+  ],
+  "featured": true,
+  "order": 4
+}

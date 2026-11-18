@@ -1,0 +1,22 @@
+---
+title: "Simulating Chaos: Visualizing the Lorenz Attractor in Game Engines"
+summary: "Bridging physics and software: Implementing numerical differential equation solvers inside Unity and Godot to explore chaotic attractors."
+publishedDate: "2024-10-15"
+tags: ["Physics", "Chaos Theory", "Unity", "Godot", "Math"]
+relatedProjects: ["lorenz-attractor"]
+relatedAcademicWork: ["chaos-theory-lorenz-attractor"]
+---
+
+### The Butterfly Effect in Code
+
+In 1963, Edward Lorenz discovered chaotic behavior while modeling atmospheric convection using three simple non-linear coupled differential equations:
+
+$$\frac{dx}{dt} = \sigma (y - x)$$
+$$\frac{dy}{dt} = x (\rho - z) - y$$
+$$\frac{dz}{dt} = xy - \beta z$$
+
+With standard parameters ($\sigma = 10$, $\rho = 28$, $\beta = 8/3$), trajectories never intersect and never repeat, tracing out the famous butterfly-shaped strange attractor.
+
+### Numerical Integration
+
+Using fourth-order Runge-Kutta (RK4) integration rather than naive Euler integration ensures stable and visually faithful particle orbits inside the real-time simulation canvas.

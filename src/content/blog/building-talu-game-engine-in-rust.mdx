@@ -1,0 +1,33 @@
+---
+title: "Building Talu: A 2D Game Engine in Rust with Custom Scripting"
+summary: "Why and how I built a modular 2D game engine in Rust from scratch, integrating WolfLang scripting and deterministic physics."
+publishedDate: "2024-11-01"
+tags: ["Rust", "Game Dev", "Engine Architecture", "WolfLang"]
+relatedProjects: ["talu-engine"]
+relatedExperience: ["fizy-game", "icarus-interactive"]
+relatedAcademicWork: ["custom-game-engine-architecture-rust"]
+---
+
+### Why Build Another Game Engine?
+
+Building an engine from scratch is rarely about competing with commercial giants like Unreal or Unity; it is an exploration of foundational computing principles. In **Talu Engine**, the core objective was creating a zero-cost abstraction runtime that pairs Rust's memory safety guarantees with a lightweight custom scripting language, **WolfLang**.
+
+```rust
+// Simplified engine core loop
+pub struct Engine {
+    world: World,
+    physics: PhysicsSystem,
+    renderer: Renderer,
+}
+
+impl Engine {
+    pub fn step(&mut self, dt: f32) {
+        self.physics.update(&mut self.world, dt);
+        self.renderer.draw(&self.world);
+    }
+}
+```
+
+### Deterministic Physics & Memory Layout
+
+By structuring entities in contiguous memory buffers rather than pointer-heavy object graphs, cache misses were reduced drastically. The custom collision engine provides deterministic step simulations, ideal for reproducible game states.

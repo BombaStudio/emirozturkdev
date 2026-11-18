@@ -1,0 +1,25 @@
+{
+  "title": "Whale Whisper",
+  "description": "Web3 AI DeFi platform built for OKX Hackathon. Features real-time whale transaction tracking, portfolio rebalancing agents, and on-chain analytics using Alchemy.",
+  "category": "web3",
+  "date": "2024",
+  "liveLink": "https://whalewhisper.vercel.app/",
+  "githubLink": "https://github.com/whalewhisper",
+  "youtubeLink": "https://www.youtube.com/watch?v=r_QtWz7kpyc",
+  "technologies": [
+    "TypeScript",
+    "Next.js",
+    "Alchemy",
+    "Web3",
+    "Tailwind CSS"
+  ],
+  "tags": [
+    "web3",
+    "defi",
+    "ai",
+    "hackathon",
+    "nextjs"
+  ],
+  "featured": true,
+  "order": 5
+}

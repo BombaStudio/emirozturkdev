@@ -1,0 +1,20 @@
+{
+  "title": "Acil Eczane Bul",
+  "description": "Emergency pharmacy finder for late-night medical needs in Turkey.",
+  "category": "web",
+  "date": "2024",
+  "githubLink": "https://github.com/BombaStudio/acileczanebul",
+  "technologies": [
+    "PHP",
+    "Laravel",
+    "Blade",
+    "MySQL"
+  ],
+  "tags": [
+    "web",
+    "laravel",
+    "php"
+  ],
+  "featured": false,
+  "order": 11
+}
