@@ -24,8 +24,10 @@ def grover_iteration(state, oracle, diffusion):
 
 The algorithm rotates the system's state vector in a two-dimensional subspace spanned by the uniform superposition $|s\rangle$ and the target state $|\omega\rangle$. Each iteration increases the probability amplitude of the target state until measurement yields the correct answer with near certainty:
 
-$$\mathcal{Q} = -\mathcal{H}^{\otimes n} \mathcal{S}_0 \mathcal{H}^{\otimes n} \mathcal{S}_\omega$$
+```math
+\mathcal{Q} = -\mathcal{H}^{\otimes n} \mathcal{S}_0 \mathcal{H}^{\otimes n} \mathcal{S}_\omega
+```
 
 ### Connecting Theory to Computational Implementations
 
-Visualizing the state vector rotation on the Bloch sphere clarifies why over-rotating beyond $\frac{\pi}{4}\sqrt{N}$ iterations diminishes the success probability, demonstrating the fine-tuned nature of quantum coherence and state preparation.
+Visualizing the state vector rotation on the Bloch sphere clarifies why over-rotating beyond `(π/4)√N` iterations diminishes the success probability, demonstrating the fine-tuned nature of quantum coherence and state preparation.

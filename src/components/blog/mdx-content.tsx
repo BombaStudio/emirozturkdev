@@ -202,6 +202,16 @@ const customComponents = {
       }
     }
 
+    if (language === "math" || language === "latex") {
+      return (
+        <div className="my-8 flex flex-col items-center justify-center overflow-x-auto rounded-xl border border-hairline bg-surface/80 p-5 font-mono text-sm text-foreground shadow-[var(--shadow-subtle)] sm:text-base text-center">
+          <div className="py-1 tracking-wide font-mono text-foreground/90">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="group relative my-8">
         {language && (
