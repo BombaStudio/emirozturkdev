@@ -64,7 +64,7 @@ const titleConfig: Record<
 
 const titleKeys = Object.keys(titleConfig) as ResumeTitle[];
 
-/** Ekran: mono/small-caps etiket. Print: ATS'in okuyacağı sade başlık. */
+/** Screen: mono/small-caps label. Print: Clean heading for ATS readability. */
 const sectionHeading =
   "label mb-4 border-b border-hairline pb-2 print:border-black print:pb-1 print:font-sans print:text-sm print:font-bold print:normal-case print:tracking-normal print:text-black";
 
@@ -105,12 +105,12 @@ export default function ResumeClient({ portfolio }: ResumeClientProps) {
         : [
             {
               title:
-                "Altın Katkılı Su Bazlı Nanoakışkanların Simülasyonla İncelenmesi",
+                "Computational Simulation of Gold-Doped Water-Based Nanofluids",
               journal: "Applied Nano (MDPI)",
               date: "Nov 2026",
               doi: "10.3390/applnano7040037",
               doiUrl: "https://doi.org/10.3390/applnano7040037",
-              advisor: "Doç. Dr. Emine Mine Çapar",
+              advisor: "Assoc. Prof. Dr. Emine Mine Çapar",
               type: "Peer-Reviewed Journal Article",
               description:
                 "• Conducted computational simulations and thermal conductivity modeling of gold-doped water nanofluids under TÜBİTAK 2209-A University Students Research Project.\n• Presented research findings via poster presentation at the 2024 Turkish Physical Society (TFD) International Physics Congress.\n• Published open-access research evaluating nanoparticle volume fraction effects on nanofluid thermophysical properties.",

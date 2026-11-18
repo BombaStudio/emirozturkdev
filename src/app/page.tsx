@@ -8,12 +8,12 @@ import Reveal from "../../components/reveal";
 const fallbackAcademicWorks: AcademicWorkEntity[] = [
   {
     slug: "applied-nano-fluid-simulation",
-    title: "Altın Katkılı Su Bazlı Nanoakışkanların Simülasyonla İncelenmesi",
+    title: "Computational Simulation of Gold-Doped Water-Based Nanofluids",
     type: "paper",
     category: "physics",
     date: "Nov 2026",
     abstract:
-      "A molecular dynamics (MD) simulation study on the structural and dynamical properties of water molecules around gold nanoclusters (GNCs). Investigates size-dependent diffusion coefficients via Einstein relation, shear viscosity, and radial distribution functions (RDF). Based on TÜBİTAK 2209-A research calculations and presented as a poster at the 2024 Turkish Physical Society (TFD) Congress under advisor Doç. Dr. Emine Mine Çapar. Published as a peer-reviewed research paper in Applied Nano (MDPI), Vol. 7, Issue 4, Art. 37 (DOI: 10.3390/applnano7040037).",
+      "A molecular dynamics (MD) simulation study on the structural and dynamical properties of water molecules around gold nanoclusters (GNCs). Investigates size-dependent diffusion coefficients via Einstein relation, shear viscosity, and radial distribution functions (RDF). Based on TÜBİTAK 2209-A research calculations and presented as a poster at the 2024 Turkish Physical Society (TFD) Congress under advisor Assoc. Prof. Dr. Emine Mine Çapar. Published as a peer-reviewed research paper in Applied Nano (MDPI), Vol. 7, Issue 4, Art. 37 (DOI: 10.3390/applnano7040037).",
     link: "https://doi.org/10.3390/applnano7040037",
     relatedProjectSlugs: [],
     tags: [
@@ -264,7 +264,7 @@ export default async function Home() {
                           href={`/projects/${project.slug}`}
                           className="relative z-10 pressable inline-flex items-center gap-1 font-medium text-foreground hover:underline"
                         >
-                          <span>Detaylar</span>
+                          <span>Details</span>
                           <span aria-hidden>&rarr;</span>
                         </Link>
                         {externalUrl && (
@@ -274,7 +274,7 @@ export default async function Home() {
                             rel="noopener noreferrer"
                             className="relative z-10 pressable inline-flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground"
                           >
-                            <span>Kaynak</span>
+                            <span>Source</span>
                             <span aria-hidden>&#8599;</span>
                           </a>
                         )}
@@ -288,7 +288,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------ Akademik Çalışmalar */}
+      {/* ------------------------------------------------ Academic Research */}
       <section className="border-t border-hairline">
         <div className="mx-auto max-w-6xl px-6 py-24 md:px-24 md:py-32">
           <Reveal>
@@ -296,19 +296,19 @@ export default async function Home() {
               <div>
                 <p className="label">Research & Publications</p>
                 <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  Akademik Çalışmalar
+                  Academic Research
                 </h2>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
-                  Kaos teorisi, kuantum hesaplama algoritmaları ve deterministik
-                  simülasyon sistemleri üzerine akademik araştırmalar ve
-                  bildiriler.
+                  Academic research, publications, and symposium presentations on
+                  chaos theory, quantum algorithms, and computational physics
+                  simulations.
                 </p>
               </div>
               <Link
                 href="/academic"
                 className="pressable inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-foreground shrink-0"
               >
-                <span>Tümünü Gör</span>
+                <span>View All</span>
                 <span aria-hidden>&rarr;</span>
               </Link>
             </div>
@@ -364,7 +364,7 @@ export default async function Home() {
                           href={`/projects/${work.relatedProject}`}
                           className="relative z-10 pressable inline-flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground truncate"
                         >
-                          <span className="text-muted/60">Proje:</span>
+                          <span className="text-muted/60">Project:</span>
                           <span className="underline underline-offset-2 truncate">
                             {work.relatedProject}
                           </span>
@@ -372,7 +372,7 @@ export default async function Home() {
                         </Link>
                       ) : (
                         <span className="font-mono text-[11px] text-muted/50">
-                          Bağımsız Çalışma
+                          Independent Research
                         </span>
                       )}
 
@@ -384,7 +384,7 @@ export default async function Home() {
                             rel="noopener noreferrer"
                             className="relative z-10 pressable inline-flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground"
                           >
-                            <span>Kaynak</span>
+                            <span>Source</span>
                             <span aria-hidden>&#8599;</span>
                           </a>
                         )}
@@ -392,7 +392,7 @@ export default async function Home() {
                           href={`/academic/${work.slug}`}
                           className="relative z-10 pressable inline-flex items-center gap-1 font-medium text-foreground hover:underline"
                         >
-                          <span>İncele</span>
+                          <span>Read More</span>
                           <span aria-hidden>&rarr;</span>
                         </Link>
                       </div>
@@ -447,7 +447,7 @@ export default async function Home() {
                         href={`/experience/${job.slug}`}
                         className="relative z-10 pressable hidden sm:inline-flex items-center gap-1 font-mono text-xs text-muted hover:text-foreground"
                       >
-                        <span>Detaylar</span>
+                        <span>Details</span>
                         <span aria-hidden="true">&rarr;</span>
                       </Link>
                     </div>
@@ -464,7 +464,7 @@ export default async function Home() {
                         href={`/experience/${job.slug}`}
                         className="relative z-10 pressable inline-flex items-center gap-1 font-mono text-xs text-muted hover:text-foreground"
                       >
-                        <span>Detaylar &rarr;</span>
+                        <span>Details &rarr;</span>
                       </Link>
                     </div>
                   </div>

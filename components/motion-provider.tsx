@@ -3,8 +3,8 @@
 import { LazyMotion, domMax } from "motion/react";
 
 /**
- * `strict` mod: yalnızca `m.*` bileşenleri kullanılabilir (ağaç sallama garantisi).
- * `domMax` = domAnimation + drag (pan) + layout animasyonları.
+ * `strict` mode: only `m.*` components are allowed (ensures tree-shaking).
+ * `domMax` = domAnimation + drag (pan) + layout animations.
  */
 export default function MotionProvider({
   children,

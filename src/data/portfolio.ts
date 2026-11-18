@@ -116,7 +116,7 @@ const jobs: Job[] = [
     startDate: "Aug 2025",
     endDate: "Aug 2025",
     description:
-      "• Built GİB-integrated e-fatura (e-invoice) portal from scratch (generate, view, print, edit) and integrated BigBlueButton with calendar scheduling.\n• Developed modular UI components using the TALL stack (Tailwind, Alpine.js, Laravel, Livewire) for enterprise software products.\n• Refactored database schemas and optimized SQL queries, reducing page load latency by 20%.",
+      "• Built Revenue Administration (GİB)-integrated e-invoice portal from scratch (generate, view, print, edit) and integrated BigBlueButton with calendar scheduling.\n• Developed modular UI components using the TALL stack (Tailwind, Alpine.js, Laravel, Livewire) for enterprise software products.\n• Refactored database schemas and optimized SQL queries, reducing page load latency by 20%.",
   },
   {
     title: "Game Developer",
@@ -463,12 +463,12 @@ const skills: SkillCategory[] = [
 
 export const publications: Publication[] = [
   {
-    title: "Altın Katkılı Su Bazlı Nanoakışkanların Simülasyonla İncelenmesi",
+    title: "Computational Simulation of Gold-Doped Water-Based Nanofluids",
     journal: "Applied Nano (MDPI)",
     date: "Nov 2026",
     doi: "10.3390/applnano7040037",
     doiUrl: "https://doi.org/10.3390/applnano7040037",
-    advisor: "Doç. Dr. Emine Mine Çapar",
+    advisor: "Assoc. Prof. Dr. Emine Mine Çapar",
     type: "Peer-Reviewed Journal Article",
     description:
       "• Conducted computational simulations and thermal conductivity modeling of gold-doped water nanofluids under TÜBİTAK 2209-A University Students Research Project.\n• Presented research findings via poster presentation at the 2024 Turkish Physical Society (TFD) International Physics Congress.\n• Published open-access research evaluating nanoparticle volume fraction effects on nanofluid thermophysical properties.",

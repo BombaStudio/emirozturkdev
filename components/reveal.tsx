@@ -4,12 +4,12 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
 
 /**
- * Bölüm giriş animasyonu (§11, §14).
+ * Section entrance scroll reveal animation.
  *
- * Sunucudan `data-reveal` olmadan (görünür) gelir → JS yoksa içerik kaybolmaz.
- * Mount sonrası ekranın altında kalan bölümler `data-reveal="hidden"` ile
- * gizlenir ve IntersectionObserver görünür olunca `"shown"` yapar.
- * State yerine DOM attribute kullanılır: yeniden render yok, cascade yok.
+ * Renders without `data-reveal` from the server (visible) → content is preserved if JS is disabled.
+ * After mount, off-screen sections receive `data-reveal="hidden"` and
+ * IntersectionObserver updates them to `"shown"` when scrolled into view.
+ * Uses DOM attributes instead of React state: no re-renders, no cascade bottlenecks.
  */
 export default function Reveal({
   children,

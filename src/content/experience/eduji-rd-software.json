@@ -4,12 +4,12 @@
   "location": "İzmir, Turkey",
   "startDate": "Aug 2025",
   "endDate": "Jun 2026",
-  "description": "Engineered enterprise web platforms and microservices across part-time and internship tenures at EDUJİ R&D Software.\nDeveloped Erasmus+ modular educational platforms and luxury transfer reservation systems with driver navigation and admin dispatch (10/2025 - 06/2026).\nArchitected GİB-integrated e-fatura (e-invoice) portal from scratch (generate, view, print, edit) and integrated BigBlueButton with calendar scheduling during internship (08/2025).",
+  "description": "Engineered enterprise web platforms and microservices across part-time and internship tenures at EDUJİ R&D Software.\nDeveloped Erasmus+ modular educational platforms and luxury transfer reservation systems with driver navigation and admin dispatch (10/2025 - 06/2026).\nArchitected Revenue Administration (GİB)-integrated e-invoice portal from scratch (generate, view, print, edit) and integrated BigBlueButton with calendar scheduling during internship (08/2025).",
   "category": "fullstack",
   "technologies": ["Laravel", "React", "MySQL", "PHP", "Tailwind CSS", "Livewire", "Alpine.js", "REST APIs"],
   "achievements": [
     "Developed Erasmus+ modular educational platforms and luxury transfer reservation system with driver navigation and admin dispatch (Part-Time: Oct 2025 - Jun 2026).",
-    "Architected GİB-integrated e-fatura (e-invoice) portal from scratch and integrated BigBlueButton with calendar scheduling (Intern: Aug 2025).",
+    "Architected Revenue Administration (GİB)-integrated e-invoice portal from scratch and integrated BigBlueButton with calendar scheduling (Intern: Aug 2025).",
     "Optimized complex MySQL queries and database schemas, improving query response times by 35%."
   ],
   "tags": ["fullstack", "laravel", "react", "enterprise", "fintech"],

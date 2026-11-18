@@ -1,9 +1,9 @@
 {
-  "title": "Altın Katkılı Su Bazlı Nanoakışkanların Simülasyonla İncelenmesi",
+  "title": "Computational Simulation of Gold-Doped Water-Based Nanofluids",
   "type": "paper",
   "category": "physics",
   "date": "Nov 2026",
-  "abstract": "A molecular dynamics (MD) simulation study on the structural and dynamical properties of water molecules around gold nanoclusters (GNCs). Investigates size-dependent diffusion coefficients via Einstein relation, shear viscosity, and radial distribution functions (RDF). Based on TÜBİTAK 2209-A research calculations and presented as a poster at the 2024 Turkish Physical Society (TFD) Congress under advisor Doç. Dr. Emine Mine Çapar. Published as a peer-reviewed research paper in Applied Nano (MDPI), Vol. 7, Issue 4, Art. 37 (DOI: 10.3390/applnano7040037).",
+  "abstract": "A molecular dynamics (MD) simulation study on the structural and dynamical properties of water molecules around gold nanoclusters (GNCs). Investigates size-dependent diffusion coefficients via Einstein relation, shear viscosity, and radial distribution functions (RDF). Based on TÜBİTAK 2209-A research calculations and presented as a poster at the 2024 Turkish Physical Society (TFD) Congress under advisor Assoc. Prof. Dr. Emine Mine Çapar. Published as a peer-reviewed research paper in Applied Nano (MDPI), Vol. 7, Issue 4, Art. 37 (DOI: 10.3390/applnano7040037).",
   "link": "https://doi.org/10.3390/applnano7040037",
   "tags": [
     "Molecular Dynamics",

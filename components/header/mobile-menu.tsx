@@ -27,7 +27,7 @@ export default function MobileMenu() {
   const scrimOpacity = useTransform(y, [0, 280], [1, 0]);
   const reduceMotion = useReducedMotion();
 
-  /** Yay ile aşağı süpür; serbest bırakma hızı spring'in başlangıç hızı olur (§5). */
+  /** Sweep down with spring; release velocity becomes the initial velocity of the spring. */
   const close = useCallback(
     (releaseVelocity = 0) => {
       if (reduceMotion) {
@@ -68,7 +68,7 @@ export default function MobileMenu() {
     if (shouldDismiss) close(info.velocity.y);
   };
 
-  /* Gövde kaydırmasını kilitle */
+  /* Lock body scroll */
   useEffect(() => {
     if (!isOpen) return;
     const previous = document.body.style.overflow;
@@ -78,7 +78,7 @@ export default function MobileMenu() {
     };
   }, [isOpen]);
 
-  /* Odak tuzağı + Escape (§ agency: klavye kullanıcısı mahsur kalmaz) */
+  /* Focus trap + Escape (accessibility: keyboard user cannot get trapped) */
   useEffect(() => {
     if (!isOpen) return;
     const panel = panelRef.current;
@@ -117,7 +117,7 @@ export default function MobileMenu() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [isOpen, close]);
 
-  /* Kapanışta odağı tetikleyiciye geri ver */
+  /* Return focus to trigger upon close */
   useEffect(() => {
     if (wasOpen.current && !isOpen) {
       buttonRef.current?.focus({ preventScroll: true });
@@ -125,7 +125,7 @@ export default function MobileMenu() {
     wasOpen.current = isOpen;
   }, [isOpen]);
 
-  /* Rota değişince kapan */
+  /* Close on route navigation */
   useEffect(() => {
     if (!isOpen) return;
     const id = window.setTimeout(() => close(), 0);

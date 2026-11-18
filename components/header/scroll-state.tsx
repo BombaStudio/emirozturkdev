@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 /**
- * Scroll durumunu `<html data-scrolled>` üzerinden CSS'e taşır.
- * Header böylece RSC olarak kalır; JS maliyeti tek bir rAF döngüsü.
+ * Reflects scroll state to CSS via `<html data-scrolled>`.
+ * Keeps Header as an RSC; client overhead is limited to a single rAF cycle.
  */
 export default function ScrollState() {
   useEffect(() => {
